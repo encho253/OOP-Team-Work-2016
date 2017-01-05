@@ -20,28 +20,17 @@ namespace Snake_Game.Food
         }
         public SmallEgg()
         {
-            this.position = NewPosition();
-            this.name = "o";
+            this.Position = NewPosition();
+            this.Name = "o";
             this.color = ConsoleColor.Yellow;
         }
 
-        protected Position NewPosition()
-        {
-            Position foodposition;
-            Random randomNumbersGenerator = new Random();
-            do
-            {
-                foodposition = new Position(randomNumbersGenerator.Next(0, Console.WindowHeight),
-                   randomNumbersGenerator.Next(0, Console.WindowWidth));
-            }
-            while (false); //(snakeElements.Contains(food) || obstacles.Contains(food));
-            return foodposition;
-        }
+       
         public override void DrawingFood()
         {
-            Console.SetCursorPosition(position.col, position.row);
+            Console.SetCursorPosition(Position.Row, Position.Col);
             Console.ForegroundColor = color;
-            Console.Write(name);
+            Console.Write(Name);
             Console.SetCursorPosition(0, 0);
             Console.ForegroundColor = ConsoleColor.White;
         }       

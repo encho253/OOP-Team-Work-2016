@@ -2,12 +2,13 @@
 {
     public struct Position
     {
-        public int row { get;  set; }
-        public int col { get;  set; }
-        public Position(int row, int col)
+       public Position(int row, int col)
         {
-            this.row = row;
-            this.col = col;
+            this.Row = row;
+            this.Col = col;
         }
+
+        public int Row { get;  set; }
+        public int Col { get;  set; }
     }
 }

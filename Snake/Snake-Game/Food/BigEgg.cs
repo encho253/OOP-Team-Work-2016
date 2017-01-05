@@ -10,8 +10,8 @@ namespace Snake_Game.Food
     {
         public BigEgg()
         {
-            this.position = NewPosition();
-            this.name = "O";
+            this.Position = NewPosition();
+            this.Name = "O";
             this.color = ConsoleColor.Red;
         }
 

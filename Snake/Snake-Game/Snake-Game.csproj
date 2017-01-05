@@ -56,6 +56,9 @@
     <Compile Include="Enum\Direction.cs" />
     <Compile Include="Exeption\GameOver.cs" />
     <Compile Include="Food\BigEgg.cs" />
+    <Compile Include="Food\Mouse.cs" />
+    <Compile Include="Food\MoveFood.cs" />
+    <Compile Include="Food\Rabbit.cs" />
     <Compile Include="Food\SmallEgg.cs" />
     <Compile Include="GameRender\GameRender.cs" />
     <Compile Include="Objects\Stone.cs" />

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Snake_Game.Contracts;
 using Snake_Game.Struct;
 
@@ -10,20 +6,34 @@ namespace Snake_Game.AbstractClasses
 {
     public abstract class Food : IDrawing
     {
-        public Position position;
-        public string name;
+        private Position position;
+        private string name;
 
         public Position Position
         {
             get { return this.position; }
-            private set { this.position = value; }
+            set { this.position = value;}
         }
+
         public string Name
         {
             get { return this.name; }
-            private set { this.name = value; }
+            set { this.name = value; }
         }
+
         abstract public void DrawingFood();
-        
+
+        public Position NewPosition()
+        {
+            Position foodposition;
+            Random randomNumbersGenerator = new Random();
+            do
+            {
+                foodposition = new Position(randomNumbersGenerator.Next(0, Console.WindowWidth - 3) + 1,
+                   randomNumbersGenerator.Next(0, Console.WindowHeight - 3) + 1);
+            }
+            while (false); //(snakeElements.Contains(food) || obstacles.Contains(food));
+            return foodposition;
+        }
     }
 }
