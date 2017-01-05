@@ -43,26 +43,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractClasses\Food.cs" />
+    <Compile Include="AbstractClasses\GameObjects.cs" />
+    <Compile Include="AbstractClasses\SnakeElement.cs" />
     <Compile Include="Contracts\IDrawing.cs" />
     <Compile Include="Contracts\IEating.cs" />
     <Compile Include="Contracts\IGameEngine.cs" />
     <Compile Include="Contracts\IMovable.cs" />
     <Compile Include="Contracts\IRunnable.cs" />
     <Compile Include="Contracts\ISnakeElements.cs" />
-    <Compile Include="Engine\GameEngine.cs" />
-    <Compile Include="Enum\Direction.cs" />
+    <Compile Include="Engine\ConsoleGameEngine.cs" />
+    <Compile Include="Engine\Game.cs" />
+    <Compile Include="Enum\Directions.cs" />
+    <Compile Include="Exception\GameOver.cs" />
+    <Compile Include="Food\BigEgg.cs" />
+    <Compile Include="Food\SmallEgg.cs" />
     <Compile Include="GameRender\GameRender.cs" />
-    <Compile Include="SnakeElements\SnakeBody.cs" />
+    <Compile Include="Objects\Stone.cs" />
+    <Compile Include="SnakeBody\Snake.cs" />
     <Compile Include="StartGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Struct\Position.cs" />
+    <Compile Include="Timer\FoodTimer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AbstractClasses\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
