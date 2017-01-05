@@ -1,12 +1,13 @@
 ﻿namespace Snake_Game
 {
-    using Contracts;
+    using Engine;
 
     public class StartGame
     {
         public static void Main()
         {
-            IDrawing adas;
+            ConsoleGameEngine engine = new ConsoleGameEngine();
+            engine.Run();
         }
     }
 }
