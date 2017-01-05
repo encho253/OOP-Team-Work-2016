@@ -12,13 +12,14 @@ namespace Snake_Game.Timer
     class FoodTimer
     {
         public static int lastFoodTime { get; set; }
+        public static int lastBigFoodTime { get; set; }
         public static Position NewSmallFood(Position position, int lastFoodTime, int foodDissapearTime)
         {
 
             if (Environment.TickCount - lastFoodTime >= foodDissapearTime)
             {
 
-                Console.SetCursorPosition(position.Row, position.Col);
+                Console.SetCursorPosition(position.Col, position.Row);
                 Console.Write(" ");
                 Thread.Sleep(50);
                 var egg = new SmallEgg();
@@ -34,14 +35,14 @@ namespace Snake_Game.Timer
             if (Environment.TickCount - lastFoodTime >= foodDissapearTime)
             {
 
-                Console.SetCursorPosition(position.Row, position.Col);
+                Console.SetCursorPosition(position.Col, position.Row);
                 Console.Write(" ");
                 Thread.Sleep(50);
                 var bigegg = new BigEgg();
                 position.Col = bigegg.Position.Col;
                 position.Row = bigegg.Position.Row;
                 bigegg.DrawingFood();
-                FoodTimer.lastFoodTime = Environment.TickCount;
+                FoodTimer.lastBigFoodTime = Environment.TickCount;
             }
             return position;
         }

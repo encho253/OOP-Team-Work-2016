@@ -15,7 +15,7 @@ namespace Snake_Game.Food
                     
         public void Move()
         {
-            Position newPosition = new Position(this.MoveFood.Position.Row, this.MoveFood.Position.Col - 1);
+            Position newPosition = new Position(this.MoveFood.Position.Col, this.MoveFood.Position.Row - 1);
             this.MoveFood.Position = newPosition;
         }
     }

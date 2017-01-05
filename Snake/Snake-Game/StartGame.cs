@@ -29,22 +29,22 @@ namespace Snake_Game
                 smallPosition = FoodTimer.NewSmallFood(smallPosition, lastSmallFoodTime, foodDissapearTime);
                 lastSmallFoodTime = FoodTimer.lastFoodTime;
                 bigPosition = FoodTimer.NewBigFood(bigPosition, lastBigFoodTime, foodDissapearTime);
-                lastBigFoodTime = FoodTimer.lastFoodTime;
+                lastBigFoodTime = FoodTimer.lastBigFoodTime;
 
-                if (mouse.MoveFood.Position.Row == 0 || mouse.MoveFood.Position.Row == Console.WindowWidth - 2 ||
-                      mouse.MoveFood.Position.Col == 0 || mouse.MoveFood.Position.Col == Console.WindowHeight - 2)
+                if (mouse.MoveFood.Position.Col == 0 || mouse.MoveFood.Position.Col >= Console.WindowWidth -1 ||
+                      mouse.MoveFood.Position.Row == 0 || mouse.MoveFood.Position.Row >= Console.WindowHeight )
                 {
                     Position oldPosition = mouse.MoveFood.Position;
-                    Console.SetCursorPosition(oldPosition.Row, oldPosition.Col);
+                    Console.SetCursorPosition(oldPosition.Col, oldPosition.Row);
                     Console.Write(" ");
                     mouse.MoveFood.Position = mouse.MoveFood.NewPosition();
                 }
 
-                if (rabbit.MoveFood.Position.Row == 0 || rabbit.MoveFood.Position.Row == Console.WindowWidth - 2 ||
-                    rabbit.MoveFood.Position.Col == 0 || rabbit.MoveFood.Position.Col == Console.WindowHeight - 2)
+                if (rabbit.MoveFood.Position.Col == 0 || rabbit.MoveFood.Position.Col >= Console.WindowWidth -1 ||
+                    rabbit.MoveFood.Position.Row == 0 || rabbit.MoveFood.Position.Row >= Console.WindowHeight )
                 {
                     Position oldPosition = rabbit.MoveFood.Position;
-                    Console.SetCursorPosition(oldPosition.Row, oldPosition.Col);
+                    Console.SetCursorPosition(oldPosition.Col, oldPosition.Row);
                     Console.Write(" ");
                     rabbit.MoveFood.Position = rabbit.MoveFood.NewPosition();
                 }
@@ -56,10 +56,10 @@ namespace Snake_Game
                 mouse.MoveFood.DrawingFood();
                 rabbit.MoveFood.DrawingFood();
 
-                Console.SetCursorPosition(lastPositionMouse.Row, lastPositionMouse.Col);
+                Console.SetCursorPosition(lastPositionMouse.Col, lastPositionMouse.Row);
                 Console.Write(" ");
 
-                Console.SetCursorPosition(lastastPositionRabbit.Row, lastastPositionRabbit.Col);
+                Console.SetCursorPosition(lastastPositionRabbit.Col, lastastPositionRabbit.Row);
                 Console.Write(" ");
                 //Console.CursorVisible = false;
 
