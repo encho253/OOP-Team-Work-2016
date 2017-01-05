@@ -2,8 +2,8 @@
 {
     public struct Position
     {
-        public int row { get; private set; }
-        public int col { get; private set; }
+        public int row { get;  set; }
+        public int col { get;  set; }
         public Position(int row, int col)
         {
             this.row = row;
