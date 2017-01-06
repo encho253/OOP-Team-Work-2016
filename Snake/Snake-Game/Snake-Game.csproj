@@ -52,6 +52,7 @@
     <Compile Include="Contracts\IMovable.cs" />
     <Compile Include="Contracts\IRunnable.cs" />
     <Compile Include="Contracts\ISnakeElements.cs" />
+<<<<<<< HEAD
     <Compile Include="Engine\GameEngine.cs" />
     <Compile Include="Enum\Direction.cs" />
     <Compile Include="Exeption\GameOver.cs" />
@@ -62,6 +63,17 @@
     <Compile Include="Food\SmallEgg.cs" />
     <Compile Include="GameRender\GameRender.cs" />
     <Compile Include="Objects\Stone.cs" />
+=======
+    <Compile Include="Engine\ConsoleGameEngine.cs" />
+    <Compile Include="Engine\Game.cs" />
+    <Compile Include="Enum\Directions.cs" />
+    <Compile Include="Exception\GameOver.cs" />
+    <Compile Include="Food\BigEgg.cs" />
+    <Compile Include="Food\SmallEgg.cs" />
+    <Compile Include="GameRender\GameRender.cs" />
+    <Compile Include="Objects\Stone.cs" />
+    <Compile Include="SnakeBody\Snake.cs" />
+>>>>>>> 76c3f4fedc20263fcbff96acda293ce8a8b768f1
     <Compile Include="StartGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Struct\Position.cs" />

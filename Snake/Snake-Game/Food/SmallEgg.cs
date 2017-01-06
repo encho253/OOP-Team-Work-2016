@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+<<<<<<< HEAD
 using Snake_Game.Contracts;
 using Snake_Game.Struct;
 using Snake_Game.AbstractClasses;
@@ -21,5 +22,12 @@ namespace Snake_Game.Food
         }
 
                
+=======
+
+namespace Snake_Game.Food
+{
+    class SmallEgg
+    {
+>>>>>>> 76c3f4fedc20263fcbff96acda293ce8a8b768f1
     }
 }

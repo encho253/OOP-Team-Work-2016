@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+<<<<<<< HEAD
 
 namespace Snake_Game.Timer
 {
@@ -29,5 +30,11 @@ namespace Snake_Game.Timer
             return lastTimeFood;
         }
 
+=======
+namespace Snake_Game.Timer
+{
+    class FoodTimer
+    {
+>>>>>>> 76c3f4fedc20263fcbff96acda293ce8a8b768f1
     }
 }

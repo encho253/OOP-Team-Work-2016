@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using Snake_Game.Struct;
 
 namespace Snake_Game
@@ -8,10 +9,17 @@ namespace Snake_Game
     using System.Threading;
     using Timer;
     using Snake_Game.AbstractClasses;
+=======
+﻿namespace Snake_Game
+{
+    using Engine;
+
+>>>>>>> 76c3f4fedc20263fcbff96acda293ce8a8b768f1
     public class StartGame
     {
         public static void Main()
         {
+<<<<<<< HEAD
 
             //IDrawing adas;
             GameEngine.SetConsoleWindow();
@@ -70,3 +78,10 @@ namespace Snake_Game
         }
     }
 }
+=======
+            ConsoleGameEngine engine = new ConsoleGameEngine();
+            engine.Run();
+        }
+    }
+}
+>>>>>>> 76c3f4fedc20263fcbff96acda293ce8a8b768f1
