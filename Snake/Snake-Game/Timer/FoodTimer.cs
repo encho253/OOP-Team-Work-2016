@@ -4,47 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Snake_Game.Timer
 {
     using System.Threading;
     using Food;
     using Struct;
-    class FoodTimer
+    using AbstractClasses;
+    class FoodTimer:Food
     {
-        public static int lastFoodTime { get; set; }
-        public static int lastBigFoodTime { get; set; }
-        public static Position NewSmallFood(Position position, int lastFoodTime, int foodDissapearTime)
-        {
-
-            if (Environment.TickCount - lastFoodTime >= foodDissapearTime)
+        public static int lastTimeFood { get; set; }
+        public static int lastTimeBigFood { get; set; }
+        public static int NewFood(Food food, int lastTimeFood, int foodDissapearTime)
+        {            
+            if (Environment.TickCount - lastTimeFood >= foodDissapearTime)
             {
-
-                Console.SetCursorPosition(position.Col, position.Row);
+                
+                Console.SetCursorPosition(food.Position.Col, food.Position.Row);
                 Console.Write(" ");
-                Thread.Sleep(50);
-                var egg = new SmallEgg();
-                position.Col = egg.Position.Col;
-                position.Row = egg.Position.Row;
-                egg.DrawingFood();
-                FoodTimer.lastFoodTime = Environment.TickCount;
+                Thread.Sleep(50);                
+                var egg = NewPosition();
+                food.Position= egg;                
+                food.DrawingFood();               
+                if (food.Name == "o")
+                {
+                    FoodTimer.lastTimeFood = Environment.TickCount;
+                    lastTimeFood = FoodTimer.lastTimeFood;
+                }
+                else if (food.Name == "O")
+                {
+                    FoodTimer.lastTimeBigFood = Environment.TickCount;
+                    lastTimeFood = FoodTimer.lastTimeBigFood;                  
+                }
             }
-            return position;
+            return lastTimeFood;
         }
-        public static Position NewBigFood(Position position, int lastFoodTime, int foodDissapearTime)
-        {
-            if (Environment.TickCount - lastFoodTime >= foodDissapearTime)
-            {
-
-                Console.SetCursorPosition(position.Col, position.Row);
-                Console.Write(" ");
-                Thread.Sleep(50);
-                var bigegg = new BigEgg();
-                position.Col = bigegg.Position.Col;
-                position.Row = bigegg.Position.Row;
-                bigegg.DrawingFood();
-                FoodTimer.lastBigFoodTime = Environment.TickCount;
-            }
-            return position;
-        }
+        
     }
 }

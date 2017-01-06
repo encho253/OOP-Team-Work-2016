@@ -7,6 +7,7 @@ namespace Snake_Game
     using System;
     using System.Threading;
     using Timer;
+    using Snake_Game.AbstractClasses;
     public class StartGame
     {
         public static void Main()
@@ -15,10 +16,11 @@ namespace Snake_Game
             //IDrawing adas;
             GameEngine.SetConsoleWindow();
             Console.CursorVisible = false;
-            Position smallPosition = new Position(0, 0);
-            Position bigPosition = new Position(0, 0);
-            int lastSmallFoodTime = 0;
-            int lastBigFoodTime = 0;
+
+            var smallEgg = new SmallEgg();
+            var bigEgg = new BigEgg();
+            int lastTimeSmallEgg = 0;
+            int lastTimeBigEgg = 0;
             int foodDissapearTime = 8000;
             
             Mouse mouse = new Mouse();
@@ -26,18 +28,16 @@ namespace Snake_Game
 
             do
             {
-                smallPosition = FoodTimer.NewSmallFood(smallPosition, lastSmallFoodTime, foodDissapearTime);
-                lastSmallFoodTime = FoodTimer.lastFoodTime;
-                bigPosition = FoodTimer.NewBigFood(bigPosition, lastBigFoodTime, foodDissapearTime);
-                lastBigFoodTime = FoodTimer.lastBigFoodTime;
-
+                lastTimeSmallEgg = FoodTimer.NewFood(smallEgg, lastTimeSmallEgg, foodDissapearTime);
+                lastTimeBigEgg = FoodTimer.NewFood(bigEgg, lastTimeBigEgg, foodDissapearTime);
+                
                 if (mouse.MoveFood.Position.Col == 0 || mouse.MoveFood.Position.Col >= Console.WindowWidth -1 ||
                       mouse.MoveFood.Position.Row == 0 || mouse.MoveFood.Position.Row >= Console.WindowHeight )
                 {
                     Position oldPosition = mouse.MoveFood.Position;
                     Console.SetCursorPosition(oldPosition.Col, oldPosition.Row);
                     Console.Write(" ");
-                    mouse.MoveFood.Position = mouse.MoveFood.NewPosition();
+                    mouse.MoveFood.Position = AbstractClasses.Food.NewPosition();
                 }
 
                 if (rabbit.MoveFood.Position.Col == 0 || rabbit.MoveFood.Position.Col >= Console.WindowWidth -1 ||
@@ -46,7 +46,7 @@ namespace Snake_Game
                     Position oldPosition = rabbit.MoveFood.Position;
                     Console.SetCursorPosition(oldPosition.Col, oldPosition.Row);
                     Console.Write(" ");
-                    rabbit.MoveFood.Position = rabbit.MoveFood.NewPosition();
+                    rabbit.MoveFood.Position = AbstractClasses.Food.NewPosition();
                 }
 
                 Position lastPositionMouse = mouse.MoveFood.Position;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Snake_Game.Food;
 namespace Snake_Game.Food
 {
-    class BigEgg: SmallEgg
+    class BigEgg: AbstractClasses.Food
     {
         public BigEgg()
         {
