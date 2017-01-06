@@ -2,5 +2,6 @@
 {
     public interface IDrawing
     {
+        void DrawingFood();
     }
 }
