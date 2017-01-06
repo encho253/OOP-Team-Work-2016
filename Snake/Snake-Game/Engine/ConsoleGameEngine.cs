@@ -11,55 +11,29 @@ namespace Snake_Game.Engine
     {
         private Snake snake;
         private Game game;
+        private Mouse mouse;
+        private Rabbit rabbit;
 
         public ConsoleGameEngine()
         {
             this.Setup();
-            this.game = new Game(new Snake());
+            this.game = new Game(new Snake(), new Mouse(), new Rabbit());
             this.snake = this.game.Snake;
+            this.mouse = this.game.Mouse;
+            this.rabbit = this.game.Rabbit;
         }
 
         public void Run()
         {
-            Mouse mouse = new Mouse();
-            Rabbit rabbit = new Rabbit();
             while (true)
             {
                 this.Draw();
                 this.game.Move();
 
-                if (mouse.MoveFood.Position.Row <= 0 || mouse.MoveFood.Position.Row >= Console.WindowWidth - 1 ||
-                     mouse.MoveFood.Position.Col <= 0 || mouse.MoveFood.Position.Col - 1 > Console.WindowHeight)
-                {
-                    Position oldPosition = mouse.MoveFood.Position;
-                    Console.SetCursorPosition(oldPosition.Row, oldPosition.Col);
-                    Console.Write(" ");
-                    mouse.MoveFood.Position = mouse.MoveFood.NewPosition();
-                }
-
-                if (rabbit.MoveFood.Position.Row <= 0 || rabbit.MoveFood.Position.Row >= Console.WindowWidth - 1 ||
-                    rabbit.MoveFood.Position.Col <= 0 || rabbit.MoveFood.Position.Col - 1 > Console.WindowHeight)
-                {
-                    Position oldPosition = rabbit.MoveFood.Position;
-                    Console.SetCursorPosition(oldPosition.Row, oldPosition.Col);
-                    Console.Write(" ");
-                    rabbit.MoveFood.Position = rabbit.MoveFood.NewPosition();
-                }
-
-                Position lastPositionMouse = mouse.MoveFood.Position;
-                Position lastastPositionRabbit = rabbit.MoveFood.Position;
-                mouse.Move();
-                rabbit.Move();
                 mouse.MoveFood.DrawingFood();
                 rabbit.MoveFood.DrawingFood();
 
-                Console.SetCursorPosition(lastPositionMouse.Row, lastPositionMouse.Col);
-                Console.Write(" ");
-
-                Console.SetCursorPosition(lastastPositionRabbit.Row, lastastPositionRabbit.Col);
-                Console.Write(" ");
                 Console.CursorVisible = false;
-
                 Thread.Sleep(100);
                 Console.Clear();
             }
