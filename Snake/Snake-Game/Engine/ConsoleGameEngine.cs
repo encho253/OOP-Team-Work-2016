@@ -23,7 +23,8 @@ namespace Snake_Game.Engine
         public void Run()
         {            
             Console.CursorVisible = false;
-            var Start = new ConsoleGameEngine();
+            var start = new ConsoleGameEngine();
+            start.Setup();
 
             var smallEgg = new SmallEgg();
             var bigEgg = new BigEgg();
@@ -36,8 +37,8 @@ namespace Snake_Game.Engine
             
             while (true)
             {
-                Start.Draw();
-                Start.game.Move();
+                start.Draw();
+                start.game.Move();
 
                 lastTimeSmallEgg = FoodTimer.NewFood(smallEgg, lastTimeSmallEgg, foodDissapearTime);
                 lastTimeBigEgg = FoodTimer.NewFood(bigEgg, lastTimeBigEgg, foodDissapearTime);

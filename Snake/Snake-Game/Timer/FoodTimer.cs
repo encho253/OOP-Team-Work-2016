@@ -19,7 +19,6 @@ namespace Snake_Game.Timer
 
                 Console.SetCursorPosition(food.Position.Col, food.Position.Row);
                 Console.Write(" ");
-                Thread.Sleep(50);
                 var egg = NewPosition();
                 food.Position = egg;
                 food.DrawingFood();

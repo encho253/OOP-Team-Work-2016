@@ -1,7 +1,7 @@
 ﻿using System;
 using Snake_Game.Contracts;
 using Snake_Game.Struct;
-
+using System.Threading;
 namespace Snake_Game.AbstractClasses
 {
     public abstract class Food : IDrawing
@@ -39,6 +39,7 @@ namespace Snake_Game.AbstractClasses
         public static Position NewPosition()
         {
             Position foodposition;
+            Thread.Sleep(5);
             Random randomNumbersGenerator = new Random();
             do
             {
