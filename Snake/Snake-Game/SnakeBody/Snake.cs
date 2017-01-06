@@ -3,6 +3,7 @@
     using Struct;
     using System.Collections.Generic;
     using System.Linq;
+    using System;
 
     public class Snake
     {
@@ -48,9 +49,12 @@
             this.tailElements.Enqueue(position);
         }
 
-        public Position Dequeue()
+        public Position MyDequeue()
         {
-            return this.tailElements.Dequeue();
+            var temp = this.tailElements.Dequeue();
+            Console.SetCursorPosition(temp.Col, temp.Row);
+            Console.Write(" ");
+            return temp;
         }
     }
 }

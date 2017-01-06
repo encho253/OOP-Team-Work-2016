@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Snake_Game.Food
 {
-    class BigEgg
+    public class BigEgg : AbstractClasses.Food
     {
+        public BigEgg()
+        {
+            this.Position = NewPosition();
+            this.Name = "O";
+            this.color = ConsoleColor.Red;
+        }
     }
 }
