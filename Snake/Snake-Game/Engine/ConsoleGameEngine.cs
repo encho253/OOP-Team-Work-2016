@@ -6,7 +6,8 @@ namespace Snake_Game.Engine
     using SnakeBody;
     using System;
     using System.Threading;
-
+    using AbstractClasses;    
+    using Timer;
     public class ConsoleGameEngine
     {
         private Snake snake;
@@ -20,30 +21,43 @@ namespace Snake_Game.Engine
         }
 
         public void Run()
-        {
+        {            
+            Console.CursorVisible = false;
+            var start = new ConsoleGameEngine();
+
+            var smallEgg = new SmallEgg();
+            var bigEgg = new BigEgg();
+            int lastTimeSmallEgg = 0;
+            int lastTimeBigEgg = 0;
+            int foodDissapearTime = 8000;
+
             Mouse mouse = new Mouse();
             Rabbit rabbit = new Rabbit();
+            
             while (true)
             {
-                this.Draw();
-                this.game.Move();
+                start.Draw();
+                start.game.Move();
 
-                if (mouse.MoveFood.Position.Row <= 0 || mouse.MoveFood.Position.Row >= Console.WindowWidth - 1 ||
-                     mouse.MoveFood.Position.Col <= 0 || mouse.MoveFood.Position.Col - 1 > Console.WindowHeight)
+                lastTimeSmallEgg = FoodTimer.NewFood(smallEgg, lastTimeSmallEgg, foodDissapearTime);
+                lastTimeBigEgg = FoodTimer.NewFood(bigEgg, lastTimeBigEgg, foodDissapearTime);
+
+                if (mouse.MoveFood.Position.Col == 0 || mouse.MoveFood.Position.Col >= Console.WindowWidth - 1 ||
+                     mouse.MoveFood.Position.Row == 0 || mouse.MoveFood.Position.Row - 1 > Console.WindowHeight)
                 {
                     Position oldPosition = mouse.MoveFood.Position;
-                    Console.SetCursorPosition(oldPosition.Row, oldPosition.Col);
+                    Console.SetCursorPosition(oldPosition.Col, oldPosition.Row);
                     Console.Write(" ");
-                    mouse.MoveFood.Position = mouse.MoveFood.NewPosition();
+                    mouse.MoveFood.Position = Food.NewPosition();
                 }
 
-                if (rabbit.MoveFood.Position.Row <= 0 || rabbit.MoveFood.Position.Row >= Console.WindowWidth - 1 ||
-                    rabbit.MoveFood.Position.Col <= 0 || rabbit.MoveFood.Position.Col - 1 > Console.WindowHeight)
+                if (rabbit.MoveFood.Position.Col == 0 || rabbit.MoveFood.Position.Col >= Console.WindowWidth - 1 ||
+                    rabbit.MoveFood.Position.Row == 0 || rabbit.MoveFood.Position.Row - 1 > Console.WindowHeight)
                 {
                     Position oldPosition = rabbit.MoveFood.Position;
-                    Console.SetCursorPosition(oldPosition.Row, oldPosition.Col);
+                    Console.SetCursorPosition(oldPosition.Col, oldPosition.Row);
                     Console.Write(" ");
-                    rabbit.MoveFood.Position = rabbit.MoveFood.NewPosition();
+                    rabbit.MoveFood.Position = Food.NewPosition();
                 }
 
                 Position lastPositionMouse = mouse.MoveFood.Position;
@@ -53,15 +67,15 @@ namespace Snake_Game.Engine
                 mouse.MoveFood.DrawingFood();
                 rabbit.MoveFood.DrawingFood();
 
-                Console.SetCursorPosition(lastPositionMouse.Row, lastPositionMouse.Col);
+                Console.SetCursorPosition(lastPositionMouse.Col, lastPositionMouse.Row);
                 Console.Write(" ");
 
-                Console.SetCursorPosition(lastastPositionRabbit.Row, lastastPositionRabbit.Col);
+                Console.SetCursorPosition(lastastPositionRabbit.Col, lastastPositionRabbit.Row);
                 Console.Write(" ");
                 Console.CursorVisible = false;
 
                 Thread.Sleep(100);
-                Console.Clear();
+                //Console.Clear();
             }
         }
 
@@ -69,15 +83,15 @@ namespace Snake_Game.Engine
         {
             foreach (var position in this.snake.TailElements)
             {
-                Console.SetCursorPosition(position.Row, position.Col);
+                Console.SetCursorPosition(position.Col, position.Row);
                 Console.WriteLine(Snake.ElementSymbol);
             }
         }
 
         public void Setup()
         {
-            Console.BufferHeight = Console.WindowHeight;
-            Console.BufferWidth = Console.WindowWidth;
+            Console.BufferHeight = Console.WindowHeight = 50;
+            Console.BufferWidth = Console.WindowWidth=125;
         }
     }
 }

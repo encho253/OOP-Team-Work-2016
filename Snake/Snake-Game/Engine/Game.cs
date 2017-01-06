@@ -3,6 +3,7 @@
     using Snake_Game.Enum;
     using Snake_Game.SnakeBody;
     using Snake_Game.Struct;
+    using System;
 
     public class Game
     {
@@ -13,10 +14,10 @@
         {
             this.Snake = snake;        
             this.directions = new Position[4];
-            this.directions[0] = new Position(0, 0);
-            this.directions[1] = new Position(-1, 0);
-            this.directions[2] = new Position(0, 1);
-            this.directions[3] = new Position(0, -1);
+            this.directions[0] = new Position(1, 0);//Right
+            this.directions[1] = new Position(-1, 0);//Left
+            this.directions[2] = new Position(0, -1);//Up
+            this.directions[3] = new Position(0, 1);//Down
             this.currentDirection = this.directions[(int)Direction.Right];
         }
       
@@ -44,11 +45,44 @@
 
         public void Move()
         {
-            this.Snake.TailElements.Dequeue();
+            this.Snake.MyDequeue();
 
             var head = this.Snake.Head;
 
-            var newPosition = new Position(head.Row + currentDirection.Row,head.Col + currentDirection.Col);
+            if (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo userInput = Console.ReadKey();
+                if (userInput.Key == ConsoleKey.LeftArrow)
+                {
+                    if (this.currentDirection.Col != this.directions[(int)Direction.Right].Col &&
+                        this.currentDirection.Row != this.directions[(int)Direction.Right].Row)
+                        this.Left();
+                }
+                if (userInput.Key == ConsoleKey.RightArrow)
+                {
+                    if (this.currentDirection.Col != this.directions[(int)Direction.Left].Col &&
+                        this.currentDirection.Row != this.directions[(int)Direction.Left].Row)
+                        this.Right();
+                }
+                if (userInput.Key == ConsoleKey.UpArrow)
+                {
+                    if (this.currentDirection.Col != this.directions[(int)Direction.Down].Col &&
+                        this.currentDirection.Row != this.directions[(int)Direction.Down].Row) 
+                         this.Up();
+                }
+                if (userInput.Key == ConsoleKey.DownArrow)
+                {
+                    if (this.currentDirection.Col != this.directions[(int)Direction.Up].Col &&
+                        this.currentDirection.Row != this.directions[(int)Direction.Up].Row)
+                        this.Down();
+                }
+            }
+            var newPosition = new Position(head.Col + currentDirection.Col, head.Row + currentDirection.Row);
+
+            if (newPosition.Col < 0) newPosition.Col = Console.WindowWidth - 1;
+            if (newPosition.Row < 0) newPosition.Row = Console.WindowHeight - 2;
+            if (newPosition.Row >= Console.WindowHeight-1) newPosition.Row = 0;
+            if (newPosition.Col >= Console.WindowWidth) newPosition.Col = 0;
 
             this.Snake.Enqueue(newPosition);
         }

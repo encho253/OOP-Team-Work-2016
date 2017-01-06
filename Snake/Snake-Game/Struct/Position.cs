@@ -2,7 +2,7 @@
 {
     public struct Position
     {
-         public Position(int row, int col)
+         public Position(int col, int row)
         {
             this.Row = row;
             this.Col = col;
