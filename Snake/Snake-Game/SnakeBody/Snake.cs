@@ -1,4 +1,7 @@
-﻿namespace Snake_Game.SnakeBody
+﻿using System;
+using Snake_Game.Contracts;
+
+namespace Snake_Game.SnakeBody
 {
     using Struct;
     using System.Collections.Generic;
