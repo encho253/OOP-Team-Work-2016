@@ -24,7 +24,6 @@ namespace Snake_Game.Engine
         {            
             Console.CursorVisible = false;
             var start = new ConsoleGameEngine();
-            start.Setup();
 
             var smallEgg = new SmallEgg();
             var bigEgg = new BigEgg();
