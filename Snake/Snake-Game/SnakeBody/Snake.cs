@@ -55,6 +55,6 @@
             Console.SetCursorPosition(temp.Col, temp.Row);
             Console.Write(" ");
             return temp;
-        }
+        }       
     }
 }
