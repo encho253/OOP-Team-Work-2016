@@ -21,7 +21,7 @@ namespace Snake_Game.Timer
                 Console.Write(" ");
                 var egg = NewPosition();
                 food.Position = egg;
-                food.DrawingFood();
+                food.Draw();
                 lastTimeFood = Environment.TickCount;
             }
             return lastTimeFood;

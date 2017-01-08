@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using Snake_Game.Contracts;
 using Snake_Game.Exception;
 using Snake_Game.Food;
 
@@ -9,7 +10,7 @@ namespace Snake_Game.Engine
     using Snake_Game.Struct;
     using System;
 
-    public class Game
+    public class Game : IGameEngine
     {
         private Position[] directions;
         private Position currentDirection;
@@ -31,27 +32,27 @@ namespace Snake_Game.Engine
         public Mouse Mouse { get; set; }
         public Rabbit Rabbit { get; set; }
 
-        public void Up()
+        public void MoveUp()
         {
             this.currentDirection = this.directions[(int)Direction.Up];
         }
 
-        public void Down()
+        public void MoveDown()
         {
             this.currentDirection = this.directions[(int)Direction.Down];
         }
 
-        public void Right()
+        public void MoveRight()
         {
             this.currentDirection = this.directions[(int)Direction.Right];
         }
 
-        public void Left()
+        public void MoveLeft()
         {
             this.currentDirection = this.directions[(int)Direction.Left];
         }
 
-        public void Move()
+        public void ExecuteSnakeMove()
         {
             this.Snake.MyDequeue();
 
@@ -64,25 +65,25 @@ namespace Snake_Game.Engine
                 {
                     if (this.currentDirection.Col != this.directions[(int)Direction.Right].Col &&
                         this.currentDirection.Row != this.directions[(int)Direction.Right].Row)
-                        this.Left();
+                        this.MoveLeft();
                 }
                 if (userInput.Key == ConsoleKey.RightArrow)
                 {
                     if (this.currentDirection.Col != this.directions[(int)Direction.Left].Col &&
                         this.currentDirection.Row != this.directions[(int)Direction.Left].Row)
-                        this.Right();
+                        this.MoveRight();
                 }
                 if (userInput.Key == ConsoleKey.UpArrow)
                 {
                     if (this.currentDirection.Col != this.directions[(int)Direction.Down].Col &&
                         this.currentDirection.Row != this.directions[(int)Direction.Down].Row)
-                        this.Up();
+                        this.MoveUp();
                 }
                 if (userInput.Key == ConsoleKey.DownArrow)
                 {
                     if (this.currentDirection.Col != this.directions[(int)Direction.Up].Col &&
                         this.currentDirection.Row != this.directions[(int)Direction.Up].Row)
-                        this.Down();
+                        this.MoveDown();
                 }
             }
 

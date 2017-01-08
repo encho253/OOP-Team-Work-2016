@@ -1,11 +1,13 @@
-﻿namespace Snake_Game.SnakeBody
+﻿using Snake_Game.Contracts;
+
+namespace Snake_Game.SnakeBody
 {
     using Struct;
     using System.Collections.Generic;
     using System.Linq;
     using System;
 
-    public class Snake
+    public class Snake : IEating
     {
         public const int InitialTailSize = 5;
         public const char ElementSymbol = '*';
@@ -42,6 +44,11 @@
             {
                 return this.tailElements.Last();
             }
+        }
+
+        public void Eat(Position position)
+        {
+            this.Enqueue(position);
         }
 
         public void Enqueue(Position position)

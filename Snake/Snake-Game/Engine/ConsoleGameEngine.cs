@@ -59,49 +59,49 @@ namespace Snake_Game.Engine
                     //eating the snake
                     if (start.snake.Head.Row == smallEgg.Position.Row && start.snake.Head.Col == smallEgg.Position.Col)
                     {
-                        start.snake.Enqueue(start.snake.TailElements.Last());
+                        start.snake.Eat(start.snake.TailElements.Last());
                         smallEgg.Position = AbstractClasses.Food.NewPosition();
                         Score.AddPoints(100);
                     }
                     else if (start.snake.Head.Row == bigEgg.Position.Row && start.snake.Head.Col == bigEgg.Position.Col)
                     {
-                        start.snake.Enqueue(start.snake.TailElements.Last());
+                        start.snake.Eat(start.snake.TailElements.Last());
                         bigEgg.Position = AbstractClasses.Food.NewPosition();
                         Score.AddPoints(150);
                     }
                     else if (start.snake.Head.Row == mouse.MoveFood.Position.Row &&
                              start.snake.Head.Col == mouse.MoveFood.Position.Col)
                     {
-                        start.snake.Enqueue(start.snake.TailElements.Last());
+                        start.snake.Eat(start.snake.TailElements.Last());
                         mouse.MoveFood.Position = AbstractClasses.Food.NewPosition();
                         Score.AddPoints(200);
                     }
                     else if (start.snake.Head.Row == rabbit.MoveFood.Position.Row &&
                              start.snake.Head.Col == rabbit.MoveFood.Position.Col)
                     {
-                        start.snake.Enqueue(start.snake.TailElements.Last());
+                        start.snake.Eat(start.snake.TailElements.Last());
                         rabbit.MoveFood.Position = AbstractClasses.Food.NewPosition();
                         Score.AddPoints(250);
                     }
                     else
                     {
-                        start.game.Move();
+                        start.game.ExecuteSnakeMove();
                     }
 
 
                     Random random = new Random();
-                    if (random.Next(1, 1000)%2 == 0)
+                    if (random.Next(1, 1000)%2 == 0 && random.Next(1, 1000) % 3 == 0)
                     {
                         rabbit.Move();
                     }
 
-                    if (random.Next(1, 1000)%3 == 0)
+                    if (random.Next(1, 1000)%5 == 0)
                     {
                         mouse.Move();
                     }
 
-                    mouse.MoveFood.DrawingFood();
-                    rabbit.MoveFood.DrawingFood();
+                    mouse.MoveFood.Draw();
+                    rabbit.MoveFood.Draw();
 
                     Thread.Sleep(100);
                     //Console.Clear();
