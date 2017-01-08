@@ -27,7 +27,7 @@ namespace Snake_Game.AbstractClasses
             set { this.name = value; }
         }
 
-        virtual public void DrawingFood()
+        virtual public void Draw()
         {
             Console.SetCursorPosition(Position.Col, Position.Row);
             Console.ForegroundColor = Color;
