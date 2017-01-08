@@ -54,7 +54,7 @@ namespace Snake_Game.Engine
 
         public void ExecuteSnakeMove()
         {
-            this.Snake.MyDequeue();
+            this.Snake.Dequeue();
 
             var head = this.Snake.Head;
 

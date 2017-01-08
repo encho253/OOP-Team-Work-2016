@@ -49,11 +49,24 @@ namespace Snake_Game.Engine
                     lastTimeSmallEgg = FoodTimer.NewFood(smallEgg, lastTimeSmallEgg, foodDissapearTime);
                     lastTimeBigEgg = FoodTimer.NewFood(bigEgg, lastTimeBigEgg, foodDissapearTime);
 
+                    //relocate the smallEgg if the smallEgg and the bigEgg are on the same position
+                    if (smallEgg.Position.Equals(bigEgg.Position) 
+                        || smallEgg.Position.Equals(rabbit.MoveFood.Position) 
+                        || smallEgg.Position.Equals(mouse.MoveFood.Position)
+                        || start.snake.TailElements.Contains(smallEgg.Position))
+                    {
+                        smallEgg.Position = AbstractClasses.Food.NewPosition();
+                    }
+
                     //relocate the bigEgg if the smallEgg and the bigEgg are on the same position
-                    if (smallEgg.Position.Equals(bigEgg.Position))
+                    if (bigEgg.Position.Equals(smallEgg.Position)
+                        || bigEgg.Position.Equals(rabbit.MoveFood.Position)
+                        || bigEgg.Position.Equals(mouse.MoveFood.Position)
+                        || start.snake.TailElements.Contains(bigEgg.Position))
                     {
                         bigEgg.Position = AbstractClasses.Food.NewPosition();
                     }
+
 
 
                     //eating the snake
@@ -102,6 +115,9 @@ namespace Snake_Game.Engine
 
                     mouse.MoveFood.Draw();
                     rabbit.MoveFood.Draw();
+
+
+
 
                     Thread.Sleep(100);
                     //Console.Clear();

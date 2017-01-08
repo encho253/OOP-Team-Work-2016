@@ -58,7 +58,7 @@ namespace Snake_Game.SnakeBody
             Console.Write("*");
         }
 
-        public Position MyDequeue()
+        public Position Dequeue()
         {
             var temp = this.tailElements.Dequeue();
             Console.SetCursorPosition(temp.Col, temp.Row);
