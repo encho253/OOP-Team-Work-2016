@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Snake_Game.Contracts;
 using Snake_Game.Exception;
 using Snake_Game.Food;
 using Snake_Game.Struct;
@@ -10,7 +11,7 @@ namespace Snake_Game.Engine
     using System;
     using System.Threading;
     using Timer;
-    public class ConsoleGameEngine
+    public class ConsoleGameEngine : IRunnable
     {
         private Snake snake;
         private Game game;
@@ -33,8 +34,8 @@ namespace Snake_Game.Engine
             Console.CursorVisible = false;
             var start = new ConsoleGameEngine();
 
-            var smallEgg = new SmallEgg();
-            var bigEgg = new BigEgg();
+            AbstractClasses.Food smallEgg = new SmallEgg();
+            AbstractClasses.Food bigEgg = new BigEgg();
             int lastTimeSmallEgg = 0;
             int lastTimeBigEgg = 0;
             int foodDissapearTime = 8000;

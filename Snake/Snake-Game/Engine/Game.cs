@@ -10,7 +10,7 @@ namespace Snake_Game.Engine
     using Snake_Game.Struct;
     using System;
 
-    public class Game : IGameEngine
+    public class Game : IGame
     {
         private Position[] directions;
         private Position currentDirection;
