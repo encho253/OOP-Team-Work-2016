@@ -1,4 +1,6 @@
-﻿using Snake_Game.Food;
+﻿using System.Threading;
+using Snake_Game.Exception;
+using Snake_Game.Food;
 
 namespace Snake_Game.Engine
 {
@@ -90,6 +92,12 @@ namespace Snake_Game.Engine
             if (newPosition.Row < 0) newPosition.Row = Console.WindowHeight - 2;
             if (newPosition.Row >= Console.WindowHeight - 1) newPosition.Row = 0;
             if (newPosition.Col >= Console.WindowWidth) newPosition.Col = 0;
+
+            //game over
+            if (this.Snake.TailElements.Contains(newPosition))
+            {
+               throw new GameOverException("Your snake has bitten itself :(");
+            }
 
             this.Snake.Enqueue(newPosition);
         }

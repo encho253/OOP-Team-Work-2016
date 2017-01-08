@@ -47,6 +47,8 @@
         public void Enqueue(Position position)
         {
             this.tailElements.Enqueue(position);
+            Console.SetCursorPosition(position.Col, position.Row);
+            Console.Write("*");
         }
 
         public Position MyDequeue()
