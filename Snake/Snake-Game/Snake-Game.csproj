@@ -52,6 +52,7 @@
     <Compile Include="Contracts\IMovable.cs" />
     <Compile Include="Contracts\IRunnable.cs" />
     <Compile Include="Engine\ConsoleGameEngine.cs" />
+    <Compile Include="Engine\FileScore.cs" />
     <Compile Include="Engine\Game.cs" />
     <Compile Include="Engine\Score.cs" />
     <Compile Include="Enum\Directions.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Food\SmallEgg.cs" />
     <Compile Include="GameRender\GameRender.cs" />
     <Compile Include="Objects\Stone.cs" />
+    <Compile Include="Objects\StoneWall.cs" />
     <Compile Include="SnakeBody\Snake.cs" />
     <Compile Include="SnakeBody\SnakeHead.cs" />
     <Compile Include="SnakeBody\SnakeTail.cs" />
