@@ -11,6 +11,7 @@
     using System.Threading;
     using Timer;
     using SnakeElements;
+    using AbstractClasses;
 
     public class ConsoleGameEngine : IRunnable
     {
@@ -18,7 +19,7 @@
         private Game game;
         private Mouse mouse;
         private Rabbit rabbit;
-        private List<AbstractClasses.Food> eggs;
+        private List<Food> eggs;
 
         public ConsoleGameEngine()
         {
@@ -27,7 +28,7 @@
             this.snake = this.game.Snake;
             this.mouse = this.game.Mouse;
             this.rabbit = this.game.Rabbit;
-            eggs = new List<AbstractClasses.Food>();
+           
         }
 
         public void Run()
@@ -35,8 +36,8 @@
             Console.CursorVisible = false;
             var start = new ConsoleGameEngine();
 
-            AbstractClasses.Food smallEgg = new SmallEgg();
-            AbstractClasses.Food bigEgg = new BigEgg();
+            Food smallEgg = new SmallEgg();
+            Food bigEgg = new BigEgg();
             int lastTimeSmallEgg = 0;
             int lastTimeBigEgg = 0;
             int foodDissapearTime = 8000;
@@ -58,7 +59,7 @@
                         || smallEgg.Position.Equals(moveFoodRabbit.Food.Position)
                         || smallEgg.Position.Equals(moveFoodMouse.Food.Position))
                     {
-                        smallEgg.Position = AbstractClasses.Food.NewPosition();
+                        smallEgg.Position = Food.NewPosition();
                     }
 
                     //relocate the bigEgg if the smallEgg and the bigEgg are on the same position
@@ -66,34 +67,34 @@
                         || bigEgg.Position.Equals(moveFoodRabbit.Food.Position)
                         || bigEgg.Position.Equals(moveFoodMouse.Food.Position))
                     {
-                        bigEgg.Position = AbstractClasses.Food.NewPosition();
+                        bigEgg.Position = Food.NewPosition();
                     }
 
                     //eating the snake
                     if (start.snake.Tail.Neck.Row == smallEgg.Position.Row && start.snake.Tail.Neck.Col == smallEgg.Position.Col)
                     {
                         start.snake.Eat(start.snake.Tail.TailElements.Last());
-                        smallEgg.Position = AbstractClasses.Food.NewPosition();
+                        smallEgg.Position = Food.NewPosition();
                         Score.AddPoints(100);
                     }
                     else if (start.snake.Tail.Neck.Row == bigEgg.Position.Row && start.snake.Tail.Neck.Col == bigEgg.Position.Col)
                     {
                         start.snake.Eat(start.snake.Tail.TailElements.Last());
-                        bigEgg.Position = AbstractClasses.Food.NewPosition();
+                        bigEgg.Position = Food.NewPosition();
                         Score.AddPoints(150);
                     }
                     else if (start.snake.Tail.Neck.Row == moveFoodMouse.Food.Position.Row &&
                              start.snake.Tail.Neck.Col == moveFoodMouse.Food.Position.Col)
                     {
                         start.snake.Eat(start.snake.Tail.TailElements.Last());
-                        moveFoodMouse.Food.Position = AbstractClasses.Food.NewPosition();
+                        moveFoodMouse.Food.Position = Food.NewPosition();
                         Score.AddPoints(200);
                     }
                     else if (start.snake.Tail.Neck.Row == moveFoodRabbit.Food.Position.Row &&
                              start.snake.Tail.Neck.Col == moveFoodRabbit.Food.Position.Col)
                     {
                         start.snake.Eat(start.snake.Tail.TailElements.Last());
-                        moveFoodRabbit.Food.Position = AbstractClasses.Food.NewPosition();
+                        moveFoodRabbit.Food.Position = Food.NewPosition();
                         Score.AddPoints(250);
                     }
                     else
