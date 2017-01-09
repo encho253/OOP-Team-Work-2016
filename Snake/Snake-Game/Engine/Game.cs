@@ -1,14 +1,13 @@
-﻿using System.Threading;
-using Snake_Game.Contracts;
-using Snake_Game.Exception;
-using Snake_Game.Food;
-
-namespace Snake_Game.Engine
+﻿namespace Snake_Game.Engine
 {
     using Snake_Game.Enum;
     using Snake_Game.SnakeBody;
     using Snake_Game.Struct;
     using System;
+    using System.Threading;
+    using Snake_Game.Contracts;
+    using Snake_Game.Exception;
+    using Snake_Game.Food;
 
     public class Game : IGame
     {

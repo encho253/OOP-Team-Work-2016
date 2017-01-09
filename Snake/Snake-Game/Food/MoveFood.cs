@@ -1,10 +1,10 @@
-﻿using System;
-using Snake_Game.Contracts;
-using Snake_Game.Enum;
-using Snake_Game.Struct;
-
-namespace Snake_Game.Food
+﻿namespace Snake_Game.Food
 {
+    using System;
+    using Snake_Game.Contracts;
+    using Snake_Game.Enum;
+    using Snake_Game.Struct;
+
     //Decorator pattern
     public class MoveFood : IMovable
     {

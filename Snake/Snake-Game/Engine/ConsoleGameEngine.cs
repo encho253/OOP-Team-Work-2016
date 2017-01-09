@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Snake_Game.Contracts;
-using Snake_Game.Enum;
-using Snake_Game.Exception;
-using Snake_Game.Food;
-
-namespace Snake_Game.Engine
+﻿namespace Snake_Game.Engine
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Snake_Game.Contracts;
+    using Snake_Game.Enum;
+    using Snake_Game.Exception;
+    using Snake_Game.Food;
     using SnakeBody;
     using System;
     using System.Threading;
     using Timer;
+
     public class ConsoleGameEngine : IRunnable
     {
         private Snake snake;
