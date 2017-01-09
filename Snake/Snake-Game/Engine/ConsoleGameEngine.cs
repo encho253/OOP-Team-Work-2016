@@ -1,4 +1,7 @@
-﻿namespace Snake_Game.Engine
+﻿using Snake_Game.Objects;
+using Snake_Game.Struct;
+
+namespace Snake_Game.Engine
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -42,6 +45,11 @@
 
             MoveFood moveFoodMouse = new MoveFood(mouse, Direction.UpLeft);
             MoveFood moveFoodRabbit = new MoveFood(rabbit, Direction.DownRight);
+
+            StoneWall bigStoneOne = new StoneWall(new Stone(new Position(49, 11)), 5, 11);
+            StoneWall bigStomeTwo = new StoneWall(new Stone(new Position(20, 25)), 2, 15);
+
+            Stone stone = new Stone(new Position(5, 20));
 
             try
             {
@@ -115,6 +123,11 @@
                     moveFoodMouse.Food.Draw();
                     moveFoodRabbit.Food.Draw();
 
+                    bigStoneOne.Draw();
+                    bigStomeTwo.Draw();
+
+                    stone.Draw();
+
                     Thread.Sleep(100);
                     //Console.Clear();
                 }
@@ -124,7 +137,18 @@
                 Console.SetCursorPosition(0, 0);
                 Console.WriteLine("GAME OVER!!!");
                 Console.WriteLine(ex.Message);
-                Console.WriteLine("Your score: {0}", Score.Points);
+                long maxScore = FileScore.LoadMaxScore();
+                if (Score.Points >= maxScore)
+                {
+                    FileScore.SaveMaxScore(Score.Points);
+                    Console.WriteLine("Your score is maximum: {0}", Score.Points);
+                }
+                else
+                {
+                    Console.WriteLine("Your score: {0}", Score.Points);
+                    Console.WriteLine("Max score is: {0}", maxScore);
+
+                }
                 Thread.Sleep(10000);
             }
 
