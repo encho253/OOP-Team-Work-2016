@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Snake_Game.Contracts;
+using Snake_Game.Enum;
 using Snake_Game.Exception;
 using Snake_Game.Food;
-using Snake_Game.Struct;
 
 namespace Snake_Game.Engine
 {
@@ -40,28 +40,30 @@ namespace Snake_Game.Engine
             int lastTimeBigEgg = 0;
             int foodDissapearTime = 8000;
 
+            MoveFood moveFoodMouse = new MoveFood(mouse, Direction.UpLeft);
+            MoveFood moveFoodRabbit = new MoveFood(rabbit, Direction.DownRight);
+
             try
             {
                 while (true)
                 {
                     start.Draw();
 
-
                     lastTimeSmallEgg = FoodTimer.NewFood(smallEgg, lastTimeSmallEgg, foodDissapearTime);
                     lastTimeBigEgg = FoodTimer.NewFood(bigEgg, lastTimeBigEgg, foodDissapearTime);
 
                     //relocate the smallEgg if the smallEgg and the bigEgg are on the same position
                     if (smallEgg.Position.Equals(bigEgg.Position)
-                        || smallEgg.Position.Equals(rabbit.MoveFood.Position)
-                        || smallEgg.Position.Equals(mouse.MoveFood.Position))
+                        || smallEgg.Position.Equals(moveFoodRabbit.Food.Position)
+                        || smallEgg.Position.Equals(moveFoodMouse.Food.Position))
                     {
                         smallEgg.Position = AbstractClasses.Food.NewPosition();
                     }
 
                     //relocate the bigEgg if the smallEgg and the bigEgg are on the same position
                     if (bigEgg.Position.Equals(smallEgg.Position)
-                        || bigEgg.Position.Equals(rabbit.MoveFood.Position)
-                        || bigEgg.Position.Equals(mouse.MoveFood.Position))
+                        || bigEgg.Position.Equals(moveFoodRabbit.Food.Position)
+                        || bigEgg.Position.Equals(moveFoodMouse.Food.Position))
                     {
                         bigEgg.Position = AbstractClasses.Food.NewPosition();
                     }
@@ -78,19 +80,19 @@ namespace Snake_Game.Engine
                         start.snake.Eat(start.snake.TailElements.Last());
                         bigEgg.Position = AbstractClasses.Food.NewPosition();
                         Score.AddPoints(150);
-                    }
-                    else if (start.snake.Head.Row == mouse.MoveFood.Position.Row &&
-                             start.snake.Head.Col == mouse.MoveFood.Position.Col)
+                    }                              
+                    else if (start.snake.Head.Row == moveFoodMouse.Food.Position.Row &&
+                             start.snake.Head.Col == moveFoodMouse.Food.Position.Col)
                     {
                         start.snake.Eat(start.snake.TailElements.Last());
-                        mouse.MoveFood.Position = AbstractClasses.Food.NewPosition();
+                        moveFoodMouse.Food.Position = AbstractClasses.Food.NewPosition();
                         Score.AddPoints(200);
-                    }
-                    else if (start.snake.Head.Row == rabbit.MoveFood.Position.Row &&
-                             start.snake.Head.Col == rabbit.MoveFood.Position.Col)
+                    }                                         
+                    else if (start.snake.Head.Row == moveFoodRabbit.Food.Position.Row &&
+                             start.snake.Head.Col == moveFoodRabbit.Food.Position.Col)
                     {
                         start.snake.Eat(start.snake.TailElements.Last());
-                        rabbit.MoveFood.Position = AbstractClasses.Food.NewPosition();
+                        moveFoodRabbit.Food.Position = AbstractClasses.Food.NewPosition();
                         Score.AddPoints(250);
                     }
                     else
@@ -102,19 +104,16 @@ namespace Snake_Game.Engine
                     Random random = new Random();
                     if (random.Next(1, 1000)%2 == 0 && random.Next(1, 1000) % 3 == 0)
                     {
-                        rabbit.Move();
+                        moveFoodRabbit.Move();
                     }
 
                     if (random.Next(1, 1000)%5 == 0)
                     {
-                        mouse.Move();
+                        moveFoodMouse.Move();
                     }
 
-                    mouse.MoveFood.Draw();
-                    rabbit.MoveFood.Draw();
-
-
-
+                    moveFoodMouse.Food.Draw();
+                    moveFoodRabbit.Food.Draw();
 
                     Thread.Sleep(100);
                     //Console.Clear();
@@ -127,15 +126,12 @@ namespace Snake_Game.Engine
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("Your score: {0}", Score.Points);
                 Thread.Sleep(10000);
-
             }
 
             finally
             {
                 Environment.Exit(0);
             }
-
-
         }
 
         public void Draw()
