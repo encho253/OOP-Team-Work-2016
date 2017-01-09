@@ -63,9 +63,9 @@
     <Compile Include="Food\SmallEgg.cs" />
     <Compile Include="GameRender\GameRender.cs" />
     <Compile Include="Objects\Stone.cs" />
-    <Compile Include="SnakeElements\Snake.cs" />
-    <Compile Include="SnakeElements\SnakeHead.cs" />
-    <Compile Include="SnakeElements\SnakeTail.cs" />
+    <Compile Include="SnakeBody\Snake.cs" />
+    <Compile Include="SnakeBody\SnakeHead.cs" />
+    <Compile Include="SnakeBody\SnakeTail.cs" />
     <Compile Include="StartGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Struct\Position.cs" />
