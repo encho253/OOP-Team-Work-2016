@@ -4,17 +4,18 @@
     using Snake_Game.Contracts;
     using Snake_Game.Enum;
     using Snake_Game.Struct;
+    using AbstractClasses;
 
     //Decorator pattern
     public class MoveFood : IMovable
     {
-        public MoveFood(AbstractClasses.Food food, Direction moveDirection)
+        public MoveFood(Food food, Direction moveDirection)
         {
             this.Food = food;
             this.MoveDirection = moveDirection;
         }
 
-        public AbstractClasses.Food Food { get; private set; }
+        public Food Food { get; private set; }
         public Direction MoveDirection { get; set; }
 
         public void Move()
@@ -62,7 +63,7 @@
                 Position oldPosition = this.Food.Position;
                 Console.SetCursorPosition(oldPosition.Col, oldPosition.Row);
                 Console.Write(" ");
-                this.Food.Position = AbstractClasses.Food.NewPosition();
+                this.Food.Position = Food.NewPosition();
             }
 
             Position lastPositionMouse = this.Food.Position;

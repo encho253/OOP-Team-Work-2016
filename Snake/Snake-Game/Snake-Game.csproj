@@ -66,6 +66,8 @@
     <Compile Include="Objects\Stone.cs" />
     <Compile Include="Objects\StoneWall.cs" />
     <Compile Include="SnakeBody\Snake.cs" />
+    <Compile Include="SnakeBody\SnakeHead.cs" />
+    <Compile Include="SnakeBody\SnakeTail.cs" />
     <Compile Include="StartGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Struct\Position.cs" />
