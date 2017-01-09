@@ -1,5 +1,4 @@
 ﻿using System;
-using Snake_Game.Contracts;
 using Snake_Game.Struct;
 using System.Threading;
 namespace Snake_Game.AbstractClasses
