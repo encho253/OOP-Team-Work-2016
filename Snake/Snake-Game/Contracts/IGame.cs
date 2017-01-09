@@ -1,5 +1,7 @@
 ﻿namespace Snake_Game.Contracts
 {
+    using Enum;
+
     public interface IGame
     {
         void MoveUp();
@@ -10,6 +12,6 @@
 
         void MoveLeft();
 
-        void ExecuteSnakeMove();
+        void ExecuteSnakeMove();  
     }
 }

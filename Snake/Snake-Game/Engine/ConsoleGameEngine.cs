@@ -10,6 +10,7 @@
     using System;
     using System.Threading;
     using Timer;
+    using SnakeElements;
 
     public class ConsoleGameEngine : IRunnable
     {
@@ -30,7 +31,7 @@
         }
 
         public void Run()
-        {            
+        {
             Console.CursorVisible = false;
             var start = new ConsoleGameEngine();
 
@@ -69,29 +70,29 @@
                     }
 
                     //eating the snake
-                    if (start.snake.Head.Row == smallEgg.Position.Row && start.snake.Head.Col == smallEgg.Position.Col)
+                    if (start.snake.Tail.Neck.Row == smallEgg.Position.Row && start.snake.Tail.Neck.Col == smallEgg.Position.Col)
                     {
-                        start.snake.Eat(start.snake.TailElements.Last());
+                        start.snake.Eat(start.snake.Tail.TailElements.Last());
                         smallEgg.Position = AbstractClasses.Food.NewPosition();
                         Score.AddPoints(100);
                     }
-                    else if (start.snake.Head.Row == bigEgg.Position.Row && start.snake.Head.Col == bigEgg.Position.Col)
+                    else if (start.snake.Tail.Neck.Row == bigEgg.Position.Row && start.snake.Tail.Neck.Col == bigEgg.Position.Col)
                     {
-                        start.snake.Eat(start.snake.TailElements.Last());
+                        start.snake.Eat(start.snake.Tail.TailElements.Last());
                         bigEgg.Position = AbstractClasses.Food.NewPosition();
                         Score.AddPoints(150);
-                    }                              
-                    else if (start.snake.Head.Row == moveFoodMouse.Food.Position.Row &&
-                             start.snake.Head.Col == moveFoodMouse.Food.Position.Col)
+                    }
+                    else if (start.snake.Tail.Neck.Row == moveFoodMouse.Food.Position.Row &&
+                             start.snake.Tail.Neck.Col == moveFoodMouse.Food.Position.Col)
                     {
-                        start.snake.Eat(start.snake.TailElements.Last());
+                        start.snake.Eat(start.snake.Tail.TailElements.Last());
                         moveFoodMouse.Food.Position = AbstractClasses.Food.NewPosition();
                         Score.AddPoints(200);
-                    }                                         
-                    else if (start.snake.Head.Row == moveFoodRabbit.Food.Position.Row &&
-                             start.snake.Head.Col == moveFoodRabbit.Food.Position.Col)
+                    }
+                    else if (start.snake.Tail.Neck.Row == moveFoodRabbit.Food.Position.Row &&
+                             start.snake.Tail.Neck.Col == moveFoodRabbit.Food.Position.Col)
                     {
-                        start.snake.Eat(start.snake.TailElements.Last());
+                        start.snake.Eat(start.snake.Tail.TailElements.Last());
                         moveFoodRabbit.Food.Position = AbstractClasses.Food.NewPosition();
                         Score.AddPoints(250);
                     }
@@ -102,12 +103,12 @@
 
 
                     Random random = new Random();
-                    if (random.Next(1, 1000)%2 == 0 && random.Next(1, 1000) % 3 == 0)
+                    if (random.Next(1, 1000) % 2 == 0 && random.Next(1, 1000) % 3 == 0)
                     {
                         moveFoodRabbit.Move();
                     }
 
-                    if (random.Next(1, 1000)%5 == 0)
+                    if (random.Next(1, 1000) % 5 == 0)
                     {
                         moveFoodMouse.Move();
                     }
@@ -136,11 +137,14 @@
 
         public void Draw()
         {
-            foreach (var position in this.snake.TailElements)
+            foreach (var position in this.snake.Tail.TailElements)
             {
                 Console.SetCursorPosition(position.Col, position.Row);
-                Console.WriteLine(Snake.ElementSymbol);
+                Console.WriteLine(SnakeTail.ElementSymbol);
             }
+
+            Console.SetCursorPosition(this.snake.SHead.Head.Col, snake.SHead.Head.Row);
+            Console.WriteLine(SnakeHead.Symbol);
         }
 
         public void Setup()

@@ -3,7 +3,7 @@
     using AbstractClasses;
     using System;
 
-    class FoodTimer : Food
+    public class FoodTimer : Food
     {
         public static int NewFood(Food food, int lastTimeFood, int foodDissapearTime)
         {

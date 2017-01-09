@@ -4,7 +4,6 @@
     using Snake_Game.SnakeBody;
     using Snake_Game.Struct;
     using System;
-    using System.Threading;
     using Snake_Game.Contracts;
     using Snake_Game.Exception;
     using Snake_Game.Food;
@@ -55,7 +54,7 @@
         {
             this.Snake.Dequeue();
 
-            var head = this.Snake.Head;
+            var neck = this.Snake.Tail.Neck;
 
             if (Console.KeyAvailable)
             {
@@ -86,7 +85,7 @@
                 }
             }
 
-            var newPosition = new Position(head.Col + currentDirection.Col, head.Row + currentDirection.Row);
+            var newPosition = new Position(neck.Col + currentDirection.Col, neck.Row + currentDirection.Row);
 
             if (newPosition.Col < 0) newPosition.Col = Console.WindowWidth - 1;
             if (newPosition.Row < 0) newPosition.Row = Console.WindowHeight - 2;
@@ -94,12 +93,14 @@
             if (newPosition.Col >= Console.WindowWidth) newPosition.Col = 0;
 
             //game over
-            if (this.Snake.TailElements.Contains(newPosition))
+            if (this.Snake.Tail.TailElements.Contains(newPosition))
             {
-               throw new GameOverException("Your snake has bitten itself :(");
+                throw new GameOverException("Your snake has bitten itself :(");
             }
 
             this.Snake.Enqueue(newPosition);
+
+            this.Snake.SHead.Head = newPosition;
         }
     }
 }
