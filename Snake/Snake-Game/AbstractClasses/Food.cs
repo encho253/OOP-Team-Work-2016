@@ -4,7 +4,7 @@ using Snake_Game.Struct;
 using System.Threading;
 namespace Snake_Game.AbstractClasses
 {
-    public abstract class Food : IDrawing
+    public abstract class Food : GameObject
     {
         private Position position;
         private string name;
@@ -27,7 +27,7 @@ namespace Snake_Game.AbstractClasses
             set { this.name = value; }
         }
 
-        virtual public void DrawingFood()
+       public override void Draw()
         {
             Console.SetCursorPosition(Position.Col, Position.Row);
             Console.ForegroundColor = Color;

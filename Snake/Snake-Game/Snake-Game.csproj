@@ -48,14 +48,14 @@
     <Compile Include="AbstractClasses\SnakeElement.cs" />
     <Compile Include="Contracts\IDrawing.cs" />
     <Compile Include="Contracts\IEating.cs" />
-    <Compile Include="Contracts\IGameEngine.cs" />
+    <Compile Include="Contracts\IGame.cs" />
     <Compile Include="Contracts\IMovable.cs" />
     <Compile Include="Contracts\IRunnable.cs" />
-    <Compile Include="Contracts\ISnakeElements.cs" />
     <Compile Include="Engine\ConsoleGameEngine.cs" />
     <Compile Include="Engine\Game.cs" />
+    <Compile Include="Engine\Score.cs" />
     <Compile Include="Enum\Directions.cs" />
-    <Compile Include="Exception\GameOver.cs" />
+    <Compile Include="Exception\GameOverException.cs" />
     <Compile Include="Food\BigEgg.cs" />
     <Compile Include="Food\Mouse.cs" />
     <Compile Include="Food\MoveFood.cs" />

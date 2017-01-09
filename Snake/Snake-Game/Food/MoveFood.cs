@@ -14,7 +14,7 @@ namespace Snake_Game.Food
 
         public ConsoleColor Color { get; set; }
 
-        public override void DrawingFood()
+        public override void Draw()
         {
             Console.ForegroundColor = this.Color;
             Console.SetCursorPosition(this.Position.Col, this.Position.Row);
