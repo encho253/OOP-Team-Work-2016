@@ -1,11 +1,10 @@
-﻿using Snake_Game.Contracts;
-
-namespace Snake_Game.SnakeBody
+﻿namespace Snake_Game.SnakeBody
 {
     using Struct;
     using System.Collections.Generic;
     using System.Linq;
     using System;
+    using Snake_Game.Contracts;
 
     public class Snake : IEating
     {

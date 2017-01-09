@@ -1,8 +1,9 @@
-﻿using System;
-using Snake_Game.Struct;
-using System.Threading;
-namespace Snake_Game.AbstractClasses
+﻿namespace Snake_Game.AbstractClasses
 {
+    using System;
+    using Snake_Game.Struct;
+    using System.Threading;
+
     public abstract class Food : GameObject
     {
         private Position position;

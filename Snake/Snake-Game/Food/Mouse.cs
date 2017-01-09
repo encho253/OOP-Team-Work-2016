@@ -1,8 +1,9 @@
-﻿using System;
-
-namespace Snake_Game.Food
+﻿namespace Snake_Game.Food
 {
-    public class Mouse : AbstractClasses.Food
+    using System;
+    using AbstractClasses;
+
+    public class Mouse : Food
     {
         public Mouse()
         {

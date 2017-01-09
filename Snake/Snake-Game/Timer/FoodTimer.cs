@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Snake_Game.Timer
+﻿namespace Snake_Game.Timer
 {
-    using System.Threading;
-    using Food;
-    using Struct;
     using AbstractClasses;
+    using System;
+
     class FoodTimer : Food
     {
         public static int NewFood(Food food, int lastTimeFood, int foodDissapearTime)

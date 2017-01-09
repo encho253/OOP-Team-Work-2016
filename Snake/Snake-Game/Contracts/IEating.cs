@@ -1,7 +1,7 @@
-﻿using Snake_Game.Struct;
-
-namespace Snake_Game.Contracts
+﻿namespace Snake_Game.Contracts
 {
+    using Snake_Game.Struct;
+
     public interface IEating
     {
         void Eat(Position position);
