@@ -5,6 +5,10 @@
         Right,
         Left,
         Up,
-        Down
+        Down,
+        UpLeft,
+        UpRight,
+        DownRight,
+        DownLeft
     }
 }
