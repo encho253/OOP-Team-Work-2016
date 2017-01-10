@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Snake_Game.Contracts;
-using Snake_Game.Struct;
-
-namespace Snake_Game.Objects
+﻿namespace Snake_Game.Objects
 {
+    using System.Collections.Generic;
+    using Snake_Game.Contracts;
+    using Snake_Game.Struct;
+    using Snake_Game.Engine;
+
     public class StoneWall : IDrawing
     {
         public StoneWall(Stone stone, int rowLenght, int colLength)
@@ -39,6 +38,19 @@ namespace Snake_Game.Objects
             {
                 stone.Draw();
             }
+        }
+
+        public bool IsHittingInStoneWall(ConsoleGameEngine start)
+        {
+            if (this.StonesList[0].Position.Row <= start.snake.Tail.Neck.Row &&
+                this.StonesList[0].Position.Col <= start.snake.Tail.Neck.Col &&
+                this.StonesList[this.StonesList.Count - 1].Position.Row >= start.snake.Tail.Neck.Row &&
+                this.StonesList[this.StonesList.Count - 1].Position.Col >= start.snake.Tail.Neck.Col)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

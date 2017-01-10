@@ -1,9 +1,9 @@
-﻿using System;
-using Snake_Game.AbstractClasses;
-using Snake_Game.Struct;
-
-namespace Snake_Game.Objects
+﻿namespace Snake_Game.Objects
 {
+    using System;
+    using Snake_Game.AbstractClasses;
+    using Snake_Game.Struct;
+
     public class Stone : GameObject
     {
         public Stone(Position position) : base()
@@ -17,6 +17,5 @@ namespace Snake_Game.Objects
             Console.SetCursorPosition(this.Position.Col, this.Position.Row);
             Console.WriteLine(this.Name);
         }
-
     }
 }
