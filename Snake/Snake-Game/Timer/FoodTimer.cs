@@ -17,6 +17,7 @@
                 food.Draw();
                 lastTimeFood = Environment.TickCount;
             }
+
             return lastTimeFood;
         }
 

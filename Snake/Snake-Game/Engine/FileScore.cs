@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Snake_Game.Engine
+﻿namespace Snake_Game.Engine
 {
+    using System.IO;
+
     public class FileScore
     {
         public static void SaveMaxScore(long scoreMax)
