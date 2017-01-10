@@ -1,7 +1,4 @@
-﻿using Snake_Game.Objects;
-using Snake_Game.Struct;
-
-namespace Snake_Game.Engine
+﻿namespace Snake_Game.Engine
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -9,6 +6,8 @@ namespace Snake_Game.Engine
     using Snake_Game.Enum;
     using Snake_Game.Exception;
     using Snake_Game.Food;
+    using Snake_Game.Objects;
+    using Snake_Game.Struct;
     using SnakeBody;
     using System;
     using System.Threading;
@@ -18,7 +17,7 @@ namespace Snake_Game.Engine
 
     public class ConsoleGameEngine : IRunnable
     {
-        private Snake snake;
+        internal Snake snake;
         private Game game;
         private Mouse mouse;
         private Rabbit rabbit;
@@ -30,8 +29,7 @@ namespace Snake_Game.Engine
             this.game = new Game(new Snake(), new Mouse(), new Rabbit());
             this.snake = this.game.Snake;
             this.mouse = this.game.Mouse;
-            this.rabbit = this.game.Rabbit;
-           
+            this.rabbit = this.game.Rabbit;         
         }
 
         public void Run()
@@ -48,10 +46,10 @@ namespace Snake_Game.Engine
             MoveFood moveFoodMouse = new MoveFood(mouse, Direction.UpLeft);
             MoveFood moveFoodRabbit = new MoveFood(rabbit, Direction.DownRight);
 
-            StoneWall bigStoneOne = new StoneWall(new Stone(new Position(49, 11)), 5, 11);
+            StoneWall bigStoneOne = new StoneWall(new Stone(new Position(49, 11)), 1, 20);
             StoneWall bigStomeTwo = new StoneWall(new Stone(new Position(20, 25)), 2, 15);
 
-            Stone stone = new Stone(new Position(5, 20));
+            Stone stone = new Stone(new Position(20, 10));
 
             try
             {
@@ -63,19 +61,31 @@ namespace Snake_Game.Engine
                     lastTimeBigEgg = FoodTimer.NewFood(bigEgg, lastTimeBigEgg, foodDissapearTime);
 
                     //relocate the smallEgg if the smallEgg and the bigEgg are on the same position
-                    if (smallEgg.Position.Equals(bigEgg.Position)
+                    if (smallEgg.IsRelocatePosition(bigStoneOne, bigStomeTwo, bigEgg, moveFoodRabbit.Food, moveFoodMouse.Food, stone))
+                        /*smallEgg.Position.Equals(bigEgg.Position)
                         || smallEgg.Position.Equals(moveFoodRabbit.Food.Position)
-                        || smallEgg.Position.Equals(moveFoodMouse.Food.Position))
+                        || smallEgg.Position.Equals(moveFoodMouse.Food.Position))*/
                     {
                         smallEgg.Position = Food.NewPosition();
                     }
 
                     //relocate the bigEgg if the smallEgg and the bigEgg are on the same position
-                    if (bigEgg.Position.Equals(smallEgg.Position)
+                    if (bigEgg.IsRelocatePosition(bigStoneOne, bigStomeTwo, smallEgg, moveFoodRabbit.Food, moveFoodMouse.Food, stone))
+                        /*bigEgg.Position.Equals(smallEgg.Position)
                         || bigEgg.Position.Equals(moveFoodRabbit.Food.Position)
-                        || bigEgg.Position.Equals(moveFoodMouse.Food.Position))
+                        || bigEgg.Position.Equals(moveFoodMouse.Food.Position))*/
                     {
                         bigEgg.Position = Food.NewPosition();
+                    }
+
+                    if (moveFoodMouse.Food.IsRelocatePosition(bigStoneOne, bigStomeTwo, smallEgg, moveFoodRabbit.Food, bigEgg, stone))
+                    {
+                        moveFoodMouse.Food.Position = Food.NewPosition();
+                    }
+
+                    if (moveFoodRabbit.Food.IsRelocatePosition(bigStoneOne, bigStomeTwo, smallEgg, moveFoodMouse.Food, bigEgg, stone))
+                    {
+                        moveFoodRabbit.Food.Position = Food.NewPosition();
                     }
 
                     //eating the snake
@@ -110,6 +120,12 @@ namespace Snake_Game.Engine
                         start.game.ExecuteSnakeMove();
                     }
 
+                    //check if snake is hit in stone wall
+                    if (bigStoneOne.IsHittingInStoneWall(start) || bigStomeTwo.IsHittingInStoneWall(start) ||
+                        start.snake.Tail.Neck.Row == stone.Position.Row && start.snake.Tail.Neck.Col == stone.Position.Col)
+                    {
+                       throw new GameOverException("Your snake hit the stone wall :(");
+                    }
 
                     Random random = new Random();
                     if (random.Next(1, 1000) % 2 == 0 && random.Next(1, 1000) % 3 == 0)
@@ -151,6 +167,7 @@ namespace Snake_Game.Engine
                     Console.WriteLine("Max score is: {0}", maxScore);
 
                 }
+
                 Thread.Sleep(10000);
             }
 
@@ -171,7 +188,6 @@ namespace Snake_Game.Engine
             Console.SetCursorPosition(this.snake.SHead.Head.Col, snake.SHead.Head.Row);
             Console.WriteLine(SnakeHead.Symbol);
         }
-
         public void Setup()
         {
             Console.BufferHeight = Console.WindowHeight;
