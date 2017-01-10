@@ -3,8 +3,8 @@
     using Snake_Game.Struct;
 
     public class SnakeHead
-    {     
-        public const char Symbol= '@';
+    {
+        public const char Symbol = '@';
         private Position head;
 
         public SnakeHead(int tailSize)
