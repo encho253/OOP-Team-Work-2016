@@ -1,8 +1,9 @@
 ﻿namespace Snake_Game.Food
 {
     using System;
+    using Timer;
 
-    public class SmallEgg : AbstractClasses.Food
+    public class SmallEgg : FoodTimer
     {
         public SmallEgg()
         {

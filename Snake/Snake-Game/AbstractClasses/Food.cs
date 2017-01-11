@@ -30,8 +30,8 @@
             Random randomNumbersGenerator = new Random();
             do
             {
-                foodposition = new Position(randomNumbersGenerator.Next(0, Console.WindowWidth - 3) + 1,
-                   randomNumbersGenerator.Next(0, Console.WindowHeight - 3) + 1);
+                foodposition = new Position(randomNumbersGenerator.Next(0, Console.WindowWidth-3) + 1,
+                   randomNumbersGenerator.Next(0, Console.WindowHeight-3) + 1);
             }
             while (false); //(snakeElements.Contains(food) || obstacles.Contains(food));
             return foodposition;

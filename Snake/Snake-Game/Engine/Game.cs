@@ -30,6 +30,21 @@
         public Mouse Mouse { get; set; }
         public Rabbit Rabbit { get; set; }
 
+        public void StartEvent()
+        {
+            PointsReached(EventArgs.Empty);
+        }
+        public event EventHandler eventPointsReached;
+
+        protected virtual void PointsReached(EventArgs e)
+        {
+            EventHandler handler = eventPointsReached;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
         public void MoveUp()
         {
             this.currentDirection = this.directions[(int)Direction.Up];
@@ -87,10 +102,10 @@
 
             var newPosition = new Position(neck.Col + currentDirection.Col, neck.Row + currentDirection.Row);
 
-            if (newPosition.Col < 0) newPosition.Col = Console.WindowWidth - 1;
+            if (newPosition.Col < 0) newPosition.Col = Console.WindowWidth - 2;
             if (newPosition.Row < 0) newPosition.Row = Console.WindowHeight - 2;
             if (newPosition.Row >= Console.WindowHeight - 1) newPosition.Row = 0;
-            if (newPosition.Col >= Console.WindowWidth) newPosition.Col = 0;
+            if (newPosition.Col >= Console.WindowWidth-1) newPosition.Col = 0;
 
             //game over
             if (this.Snake.Tail.TailElements.Contains(newPosition))

@@ -6,38 +6,41 @@ using Snake_Game.Struct;
 
 namespace Snake_Game.Objects
 {
-    public class StoneWall : IDrawing
+    public class StoneWall : Stone
     {
-        public StoneWall(Stone stone, int rowLenght, int colLength)
+
+
+        public StoneWall(Position position, int rowLenght, int colLength) : base(position)
         {
-            this.StonesList = new List<Stone>();
-            CreateStones(stone, rowLenght, colLength);
+            this.StonesList = new List<Position>();
+            CreateStones(position, rowLenght, colLength);
         }
 
-        public List<Stone> StonesList { get; set; }
+        public List<Position> StonesList { get; set; }
 
-        public void CreateStones(Stone stone, int rowLenght, int colLength)
+        public void CreateStones(Position position, int rowLenght, int colLength)
         {
-            Position currentPosition = stone.Position;
+            Position currentPosition = position;
             for (int row = 0; row < rowLenght; row++)
             {
-                currentPosition.Col = stone.Position.Col;
-                currentPosition.Row = stone.Position.Row + row;
+                currentPosition.Col = position.Col;
+                currentPosition.Row = position.Row + row;
 
                 for (int col = 0; col < colLength; col++)
                 {
                     currentPosition.Col += 1;
 
-                    StonesList.Add(new Stone(currentPosition));
+                    StonesList.Add(new Position(currentPosition.Col, currentPosition.Row));
                 }
             }
         }
 
-        public void Draw()
+        public override void Draw()
         {
-            foreach (var stone in this.StonesList)
+            foreach (var position in this.StonesList)
             {
-                stone.Draw();
+                Console.SetCursorPosition(position.Col, position.Row);
+                Console.WriteLine(this.Name);
             }
         }
     }

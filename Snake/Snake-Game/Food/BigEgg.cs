@@ -2,8 +2,9 @@
 {
     using System;
     using AbstractClasses;
+    using Timer;
 
-    public class BigEgg : Food
+    public class BigEgg : FoodTimer
     {
         public BigEgg()
         {
