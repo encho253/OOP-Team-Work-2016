@@ -87,12 +87,14 @@
                         lastTimeBigEgg = FoodTimer.DrawNewFood(bigEgg, lastTimeBigEgg);
                     }
 
-                    if (moveFoodMouse.Food.IsRelocatePosition(bigStoneOne, bigStomeTwo, smallEgg, moveFoodRabbit.Food, bigEgg, stone))
+                    if (key == 0 ? moveFoodMouse.Food.IsRelocatePositionShort(smallEgg, moveFoodRabbit.Food, bigEgg, stone) :
+                        moveFoodMouse.Food.IsRelocatePosition(bigStoneOne, bigStomeTwo, smallEgg, moveFoodRabbit.Food, bigEgg, stone))
                     {
                         moveFoodMouse.Food.Position = Food.NewPosition();
                     }
 
-                    if (moveFoodRabbit.Food.IsRelocatePosition(bigStoneOne, bigStomeTwo, smallEgg, moveFoodMouse.Food, bigEgg, stone))
+                    if (key == 0 ? moveFoodRabbit.Food.IsRelocatePositionShort(smallEgg, moveFoodMouse.Food, bigEgg, stone) :
+                        moveFoodRabbit.Food.IsRelocatePosition(bigStoneOne, bigStomeTwo, smallEgg, moveFoodMouse.Food, bigEgg, stone))
                     {
                         moveFoodRabbit.Food.Position = Food.NewPosition();
                     }
@@ -130,8 +132,8 @@
                     }
 
                     //check if snake is hit in stone wall
-                    if (bigStoneOne.IsHittingInStoneWall(start) || bigStomeTwo.IsHittingInStoneWall(start) ||
-                        start.snake.Tail.Neck.Row == stone.Position.Row && start.snake.Tail.Neck.Col == stone.Position.Col)
+                    if ((key == 0 ? false : bigStoneOne.IsHittingInStoneWall(start)) || (key == 0 ? false : bigStomeTwo.IsHittingInStoneWall(start)) ||
+                        start.snake.Tail.Neck.Equals(stone.Position))
                     {
                         throw new GameOverException("Your snake hit the stone wall :(");
                     }
