@@ -21,7 +21,13 @@
         private Game game;
         private Mouse mouse;
         private Rabbit rabbit;
-        private List<Food> eggs;
+        public static int key { get; set; }
+        //private List<Food> eggs;
+
+        static ConsoleGameEngine()
+        {
+            key = 0;
+        }
 
         public ConsoleGameEngine()
         {
@@ -29,7 +35,7 @@
             this.game = new Game(new Snake(), new Mouse(), new Rabbit());
             this.snake = this.game.Snake;
             this.mouse = this.game.Mouse;
-            this.rabbit = this.game.Rabbit;         
+            this.rabbit = this.game.Rabbit;
         }
 
         public void Run()
@@ -45,12 +51,13 @@
 
             MoveFood moveFoodMouse = new MoveFood(mouse, Direction.UpLeft);
             MoveFood moveFoodRabbit = new MoveFood(rabbit, Direction.DownRight);
-
-            StoneWall bigStoneOne = new StoneWall(new Stone(new Position(49, 11)), 1, 20);
-            StoneWall bigStomeTwo = new StoneWall(new Stone(new Position(20, 25)), 2, 15);
+            int dynamicCol = Console.WindowWidth / 4;
+            int dynamicRow = (Console.WindowHeight / 2) - 1;
+            StoneWall bigStoneOne = new StoneWall(new Stone(new Position(dynamicCol, dynamicRow)), 1, 60);
+            StoneWall bigStomeTwo = new StoneWall(new Stone(new Position(dynamicCol, dynamicRow + 1)), 1, 60);
 
             Stone stone = new Stone(new Position(20, 10));
-
+            int eventPointsSize = 100;
             try
             {
                 while (true)
@@ -61,21 +68,23 @@
                     lastTimeBigEgg = FoodTimer.NewFood(bigEgg, lastTimeBigEgg, foodDissapearTime);
 
                     //relocate the smallEgg if the smallEgg and the bigEgg are on the same position
-                    if (smallEgg.IsRelocatePosition(bigStoneOne, bigStomeTwo, bigEgg, moveFoodRabbit.Food, moveFoodMouse.Food, stone))
-                        /*smallEgg.Position.Equals(bigEgg.Position)
-                        || smallEgg.Position.Equals(moveFoodRabbit.Food.Position)
-                        || smallEgg.Position.Equals(moveFoodMouse.Food.Position))*/
+                    if (key == 0 ? smallEgg.IsRelocatePositionShort(bigEgg, moveFoodRabbit.Food, moveFoodMouse.Food, stone) :
+                        smallEgg.IsRelocatePosition(bigStoneOne, bigStomeTwo, bigEgg, moveFoodRabbit.Food, moveFoodMouse.Food, stone))
+                    /*smallEgg.Position.Equals(bigEgg.Position)
+                    || smallEgg.Position.Equals(moveFoodRabbit.Food.Position)
+                    || smallEgg.Position.Equals(moveFoodMouse.Food.Position))*/
                     {
-                        smallEgg.Position = Food.NewPosition();
+                        lastTimeSmallEgg = FoodTimer.DrawNewFood(smallEgg, lastTimeSmallEgg);
                     }
 
                     //relocate the bigEgg if the smallEgg and the bigEgg are on the same position
-                    if (bigEgg.IsRelocatePosition(bigStoneOne, bigStomeTwo, smallEgg, moveFoodRabbit.Food, moveFoodMouse.Food, stone))
-                        /*bigEgg.Position.Equals(smallEgg.Position)
-                        || bigEgg.Position.Equals(moveFoodRabbit.Food.Position)
-                        || bigEgg.Position.Equals(moveFoodMouse.Food.Position))*/
+                    if (key == 0 ? bigEgg.IsRelocatePositionShort(moveFoodRabbit.Food, moveFoodMouse.Food, stone) :
+                        bigEgg.IsRelocatePosition(bigStoneOne, bigStomeTwo, smallEgg, moveFoodRabbit.Food, moveFoodMouse.Food, stone))
+                    /*bigEgg.Position.Equals(smallEgg.Position)
+                    || bigEgg.Position.Equals(moveFoodRabbit.Food.Position)
+                    || bigEgg.Position.Equals(moveFoodMouse.Food.Position))*/
                     {
-                        bigEgg.Position = Food.NewPosition();
+                        lastTimeBigEgg = FoodTimer.DrawNewFood(bigEgg, lastTimeBigEgg);
                     }
 
                     if (moveFoodMouse.Food.IsRelocatePosition(bigStoneOne, bigStomeTwo, smallEgg, moveFoodRabbit.Food, bigEgg, stone))
@@ -92,13 +101,13 @@
                     if (start.snake.Tail.Neck.Row == smallEgg.Position.Row && start.snake.Tail.Neck.Col == smallEgg.Position.Col)
                     {
                         start.snake.Eat(start.snake.Tail.TailElements.Last());
-                        smallEgg.Position = Food.NewPosition();
+                        lastTimeSmallEgg = FoodTimer.DrawNewFood(smallEgg, lastTimeSmallEgg);
                         Score.AddPoints(100);
                     }
                     else if (start.snake.Tail.Neck.Row == bigEgg.Position.Row && start.snake.Tail.Neck.Col == bigEgg.Position.Col)
                     {
                         start.snake.Eat(start.snake.Tail.TailElements.Last());
-                        bigEgg.Position = Food.NewPosition();
+                        lastTimeBigEgg = FoodTimer.DrawNewFood(bigEgg, lastTimeBigEgg);
                         Score.AddPoints(150);
                     }
                     else if (start.snake.Tail.Neck.Row == moveFoodMouse.Food.Position.Row &&
@@ -124,7 +133,7 @@
                     if (bigStoneOne.IsHittingInStoneWall(start) || bigStomeTwo.IsHittingInStoneWall(start) ||
                         start.snake.Tail.Neck.Row == stone.Position.Row && start.snake.Tail.Neck.Col == stone.Position.Col)
                     {
-                       throw new GameOverException("Your snake hit the stone wall :(");
+                        throw new GameOverException("Your snake hit the stone wall :(");
                     }
 
                     Random random = new Random();
@@ -141,11 +150,14 @@
                     moveFoodMouse.Food.Draw();
                     moveFoodRabbit.Food.Draw();
 
-                    bigStoneOne.Draw();
-                    bigStomeTwo.Draw();
-
+                    if (ConsoleGameEngine.key == 1)
+                    {
+                        bigStoneOne.Draw();
+                        bigStomeTwo.Draw();
+                    }
                     stone.Draw();
-
+                    start.game.eventPointsReached += Event_PointsReached;
+                    if (Score.Points >= eventPointsSize) start.game.StartEvent(EventArgs.Empty);
                     Thread.Sleep(100);
                     //Console.Clear();
                 }
@@ -192,6 +204,10 @@
         {
             Console.BufferHeight = Console.WindowHeight;
             Console.BufferWidth = Console.WindowWidth;
+        }
+        static void Event_PointsReached(object sender, EventArgs e)
+        {
+            key = 1;
         }
     }
 }
