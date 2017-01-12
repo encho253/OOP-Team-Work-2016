@@ -23,5 +23,14 @@
 
             return false;
         }
+        public bool IsRelocatePositionShort( params GameObject[] otherObject)
+        {
+            if (otherObject.Any(obj => this.Position.Equals(obj.Position)))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
