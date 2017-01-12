@@ -10,6 +10,6 @@
 
         void MoveLeft();
 
-        void ExecuteSnakeMove();  
+        void ExecuteSnakeMove();
     }
 }
