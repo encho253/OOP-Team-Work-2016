@@ -106,14 +106,14 @@
                         start.snake.Eat(start.snake.Tail.TailElements.Last());
                         lastTimeSmallEgg = FoodTimer.DrawNewFood(smallEgg, lastTimeSmallEgg);
                         Score.AddPoints(100);
-                        sleepTime -= 10;
+                        sleepTime -= 15;
                     }
                     else if (start.snake.Tail.Neck.Row == bigEgg.Position.Row && start.snake.Tail.Neck.Col == bigEgg.Position.Col)
                     {
                         start.snake.Eat(start.snake.Tail.TailElements.Last());
                         lastTimeBigEgg = FoodTimer.DrawNewFood(bigEgg, lastTimeBigEgg);
                         Score.AddPoints(150);
-                        sleepTime -= 10;
+                        sleepTime -= 15;
                     }
                     else if (start.snake.Tail.Neck.Row == moveFoodMouse.Food.Position.Row &&
                              start.snake.Tail.Neck.Col == moveFoodMouse.Food.Position.Col)
@@ -121,7 +121,7 @@
                         start.snake.Eat(start.snake.Tail.TailElements.Last());
                         moveFoodMouse.Food.Position = Food.NewPosition();
                         Score.AddPoints(200);
-                        sleepTime -= 10;
+                        sleepTime -= 15;
                     }
                     else if (start.snake.Tail.Neck.Row == moveFoodRabbit.Food.Position.Row &&
                              start.snake.Tail.Neck.Col == moveFoodRabbit.Food.Position.Col)
@@ -129,7 +129,7 @@
                         start.snake.Eat(start.snake.Tail.TailElements.Last());
                         moveFoodRabbit.Food.Position = Food.NewPosition();
                         Score.AddPoints(250);
-                        sleepTime -= 10;
+                        sleepTime -= 15;
                     }
                     else
                     {
