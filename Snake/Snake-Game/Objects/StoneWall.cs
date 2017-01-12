@@ -1,47 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Snake_Game.Contracts;
-using Snake_Game.Struct;
-
-namespace Snake_Game.Objects
+﻿namespace Snake_Game.Objects
 {
-    public class StoneWall : Stone
+    using System.Collections.Generic;
+    using Snake_Game.Contracts;
+    using Snake_Game.Struct;
+    using Snake_Game.Engine;
+
+    public class StoneWall : IDrawing
     {
-
-
-        public StoneWall(Position position, int rowLenght, int colLength) : base(position)
+        public StoneWall(Stone stone, int rowLenght, int colLength)
         {
-            this.StonesList = new List<Position>();
-            CreateStones(position, rowLenght, colLength);
+            this.StonesList = new List<Stone>();
+            CreateStones(stone, rowLenght, colLength);
         }
 
-        public List<Position> StonesList { get; set; }
+        public List<Stone> StonesList { get; set; }
 
-        public void CreateStones(Position position, int rowLenght, int colLength)
+        public void CreateStones(Stone stone, int rowLenght, int colLength)
         {
-            Position currentPosition = position;
+            Position currentPosition = stone.Position;
             for (int row = 0; row < rowLenght; row++)
             {
-                currentPosition.Col = position.Col;
-                currentPosition.Row = position.Row + row;
+                currentPosition.Col = stone.Position.Col;
+                currentPosition.Row = stone.Position.Row + row;
 
                 for (int col = 0; col < colLength; col++)
                 {
                     currentPosition.Col += 1;
 
-                    StonesList.Add(new Position(currentPosition.Col, currentPosition.Row));
+                    StonesList.Add(new Stone(currentPosition));
                 }
             }
         }
 
-        public override void Draw()
+        public void Draw()
         {
-            foreach (var position in this.StonesList)
+            foreach (var stone in this.StonesList)
             {
-                Console.SetCursorPosition(position.Col, position.Row);
-                Console.WriteLine(this.Name);
+                stone.Draw();
             }
+        }
+
+        public bool IsHittingInStoneWall(ConsoleGameEngine start)
+        {
+            if (this.StonesList[0].Position.Row <= start.snake.Tail.Neck.Row &&
+                this.StonesList[0].Position.Col <= start.snake.Tail.Neck.Col &&
+                this.StonesList[this.StonesList.Count - 1].Position.Row >= start.snake.Tail.Neck.Row &&
+                this.StonesList[this.StonesList.Count - 1].Position.Col >= start.snake.Tail.Neck.Col)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
