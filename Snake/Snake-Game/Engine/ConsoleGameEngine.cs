@@ -165,6 +165,10 @@
                     stone.Draw();
                     start.game.eventPointsReached += Event_PointsReached;
                     if (Score.Points >= eventPointsSize) start.game.StartEvent(EventArgs.Empty);
+                    if (sleepTime < 0)
+                    {
+                        sleepTime = 14;
+                    }
                     Thread.Sleep(sleepTime);
                     //Console.Clear();
                 }
