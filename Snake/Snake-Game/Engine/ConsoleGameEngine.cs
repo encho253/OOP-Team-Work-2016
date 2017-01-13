@@ -58,6 +58,7 @@
 
             Stone stone = new Stone(new Position(20, 10));
             int eventPointsSize = 100;
+            int sleepTime = 100;
             try
             {
                 while (true)
@@ -105,12 +106,14 @@
                         start.snake.Eat(start.snake.Tail.TailElements.Last());
                         lastTimeSmallEgg = FoodTimer.DrawNewFood(smallEgg, lastTimeSmallEgg);
                         Score.AddPoints(100);
+                        sleepTime -= 15;
                     }
                     else if (start.snake.Tail.Neck.Row == bigEgg.Position.Row && start.snake.Tail.Neck.Col == bigEgg.Position.Col)
                     {
                         start.snake.Eat(start.snake.Tail.TailElements.Last());
                         lastTimeBigEgg = FoodTimer.DrawNewFood(bigEgg, lastTimeBigEgg);
                         Score.AddPoints(150);
+                        sleepTime -= 15;
                     }
                     else if (start.snake.Tail.Neck.Row == moveFoodMouse.Food.Position.Row &&
                              start.snake.Tail.Neck.Col == moveFoodMouse.Food.Position.Col)
@@ -118,6 +121,7 @@
                         start.snake.Eat(start.snake.Tail.TailElements.Last());
                         moveFoodMouse.Food.Position = Food.NewPosition();
                         Score.AddPoints(200);
+                        sleepTime -= 15;
                     }
                     else if (start.snake.Tail.Neck.Row == moveFoodRabbit.Food.Position.Row &&
                              start.snake.Tail.Neck.Col == moveFoodRabbit.Food.Position.Col)
@@ -125,6 +129,7 @@
                         start.snake.Eat(start.snake.Tail.TailElements.Last());
                         moveFoodRabbit.Food.Position = Food.NewPosition();
                         Score.AddPoints(250);
+                        sleepTime -= 15;
                     }
                     else
                     {
@@ -160,7 +165,11 @@
                     stone.Draw();
                     start.game.eventPointsReached += Event_PointsReached;
                     if (Score.Points >= eventPointsSize) start.game.StartEvent(EventArgs.Empty);
-                    Thread.Sleep(100);
+                    if (sleepTime < 0)
+                    {
+                        sleepTime = 14;
+                    }
+                    Thread.Sleep(sleepTime);
                     //Console.Clear();
                 }
             }
@@ -182,7 +191,7 @@
 
                 }
 
-                Thread.Sleep(10000);
+                Thread.Sleep(sleepTime);
             }
 
             finally
