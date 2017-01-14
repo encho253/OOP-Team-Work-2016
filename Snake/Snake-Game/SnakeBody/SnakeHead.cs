@@ -2,7 +2,7 @@
 {
     using Snake_Game.Struct;
 
-    public class SnakeHead
+    public class SnakeHead : SnakeElements.SnakeElement
     {
         public const char Symbol = '@';
         private Position head;

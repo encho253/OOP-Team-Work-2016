@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class SnakeTail
+    public class SnakeTail : SnakeElement
     {
         public const int InitialTailSize = 5;
         public const char ElementSymbol = '*';
