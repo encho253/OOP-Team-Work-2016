@@ -205,11 +205,11 @@
             foreach (var position in this.snake.Tail.TailElements)
             {
                 Console.SetCursorPosition(position.Col, position.Row);
-                Console.WriteLine(SnakeTail.ElementSymbol);
+                Console.WriteLine(this.snake.Tail.Symbol);
             }
 
-            Console.SetCursorPosition(this.snake.SHead.Head.Col, snake.SHead.Head.Row);
-            Console.WriteLine(SnakeHead.Symbol);
+            Console.SetCursorPosition(this.snake.SnakeHead.Head.Col, snake.SnakeHead.Head.Row);
+            Console.WriteLine(this.snake.SnakeHead.Symbol);
         }
         public void Setup()
         {

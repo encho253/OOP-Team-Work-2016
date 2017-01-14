@@ -1,9 +1,13 @@
-﻿namespace Snake_Game.SnakeElements
+﻿namespace Snake_Game.AbstractClasses
 {
     public abstract class SnakeElement
     {
-        public char drawingSymbol;
-        public int tailsize;
+        public SnakeElement(char symbol)
+        {
+            this.Symbol = symbol;
+        }
+
+        public char Symbol { get; private set; }
 
     }
 }

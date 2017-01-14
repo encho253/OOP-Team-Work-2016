@@ -3,18 +3,19 @@
     using Snake_Game.Struct;
     using System.Collections.Generic;
     using System.Linq;
+    using AbstractClasses;
 
     public class SnakeTail : SnakeElement
     {
         public const int InitialTailSize = 5;
-        public const char ElementSymbol = '*';
 
-        public SnakeTail(int tailSize)
+        public SnakeTail(int tailSize, char symbol = '*')
+            : base(symbol)
         {
-            this.TailSize = tailSize;        
+            this.TailSize = tailSize;
         }
 
-        public Queue<Position> TailElements { get; set; }       
+        public Queue<Position> TailElements { get; set; }
 
         public int TailSize { get; set; }
 
