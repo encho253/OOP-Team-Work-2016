@@ -107,7 +107,7 @@
 
             this.Snake.Enqueue(newPosition);
 
-            this.Snake.SHead.Head = newPosition;
+            this.Snake.SnakeHead.Head = newPosition;
         }
     }
 }

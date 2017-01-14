@@ -1,13 +1,14 @@
 ﻿namespace Snake_Game.SnakeBody
 {
     using Snake_Game.Struct;
+    using AbstractClasses;
 
-    public class SnakeHead : SnakeElements.SnakeElement
+    public class SnakeHead : SnakeElement
     {
-        public const char Symbol = '@';
         private Position head;
 
-        public SnakeHead(int tailSize)
+        public SnakeHead(int tailSize, char symbol = '@')
+            : base(symbol)
         {
             this.head = new Position(tailSize, 0);
         }

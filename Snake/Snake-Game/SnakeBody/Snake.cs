@@ -19,7 +19,7 @@
                 this.Tail.TailElements.Enqueue(new Position(i, 0));
             }
 
-            this.SHead = new SnakeHead(this.Tail.TailSize);
+            this.SnakeHead = new SnakeHead(this.Tail.TailSize);
         }
 
         public Snake() : this(SnakeTail.InitialTailSize)
@@ -29,7 +29,7 @@
 
         public SnakeTail Tail { get; set; }
 
-        public SnakeHead SHead { get; set; }
+        public SnakeHead SnakeHead { get; set; }
 
         public void Eat(Position position)
         {
