@@ -23,6 +23,7 @@ http://best.telerikacademy.com/
 This project is a simple implementation of the popular game "Snake".
 
 The game is operated through arrow keys and is a single-player game.
+
 ![ArrowsKeys](./Images/ArrowsKeys.png)
 
 There are 4 types of food :
@@ -44,7 +45,9 @@ The food cannot appear on a stone or stone wall.
 The head of the snake is represented by the symbol “@”,  and the body contains only “ * ” symbols.
 
 There is an event created – when 100 points are reached a stone wall is placed at the center of the screen.
+
 ![ConsoleUI](./Images/ConsoleUI.png)
 
 ##Class diagram
+
 ![ClassDiagram1](./Images/ClassDiagram1.png)
