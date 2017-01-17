@@ -1,17 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Snake_Game.AbstractClasses;
-
-namespace Snake_Game.SnakeBody
+﻿namespace Snake_Game.SnakeBody
 {
+    using Snake_Game.Struct;
+    using AbstractClasses;
+
     public class SnakeHead : SnakeElement
     {
-        public SnakeHead(int row, int col) : base(row, col)
+        private Position head;
+
+        public SnakeHead(int tailSize, char symbol = '@')
+            : base(symbol)
         {
-            this.symbol = '#';
+            this.head = new Position(tailSize, 0);
+        }
+
+        public Position Head
+        {
+            get
+            {
+                return this.head;
+            }
+            set
+            {
+                this.head = value;
+            }
         }
     }
 }

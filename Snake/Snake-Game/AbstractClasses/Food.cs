@@ -1,13 +1,11 @@
-﻿using System;
-using Snake_Game.Contracts;
-using Snake_Game.Struct;
-using System.Threading;
-namespace Snake_Game.AbstractClasses
+﻿namespace Snake_Game.AbstractClasses
 {
+    using System;
+    using Snake_Game.Struct;
+    using System.Threading;
+
     public abstract class Food : GameObject
     {
-        private Position position;
-        private string name;
         protected ConsoleColor color = ConsoleColor.White;
 
         public ConsoleColor Color
@@ -15,19 +13,8 @@ namespace Snake_Game.AbstractClasses
             get { return this.color; }
             private set { this.color = value; }
         }
-        public Position Position
-        {
-            get { return this.position; }
-            set { this.position = value; }
-        }
 
-        public string Name
-        {
-            get { return this.name; }
-            set { this.name = value; }
-        }
-
-       public override void Draw()
+        public override void Draw()
         {
             Console.SetCursorPosition(Position.Col, Position.Row);
             Console.ForegroundColor = Color;

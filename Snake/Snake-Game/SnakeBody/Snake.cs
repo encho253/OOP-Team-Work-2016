@@ -1,50 +1,35 @@
-﻿using Snake_Game.Contracts;
-
-namespace Snake_Game.SnakeBody
+﻿namespace Snake_Game.SnakeBody
 {
     using Struct;
     using System.Collections.Generic;
     using System.Linq;
     using System;
+    using Snake_Game.Contracts;
+    using SnakeElements;
 
     public class Snake : IEating
-    {
-        public const int InitialTailSize = 5;
-        public const char ElementSymbol = '*';
-
-        private Queue<Position> tailElements;
-        private int tailSize;
-
+    {            
         public Snake(int tailSize)
         {
-            this.tailSize = tailSize;
-            this.tailElements = new Queue<Position>();
-           
-            for (int i = 0; i < this.tailSize; i++)
+            this.Tail = new SnakeTail(tailSize);
+            this.Tail.TailElements = new Queue<Position>();
+            
+            for (int i = 0; i < this.Tail.TailSize; i++)
             {
-                this.tailElements.Enqueue(new Position(i, 0));
+                this.Tail.TailElements.Enqueue(new Position(i, 0));
             }
+
+            this.SnakeHead = new SnakeHead(this.Tail.TailSize);
         }
 
-        public Snake() : this(InitialTailSize)
+        public Snake() : this(SnakeTail.InitialTailSize)
         {
 
         }
 
-        public Queue<Position> TailElements
-        {
-            get
-            {
-                return new Queue<Position>(this.tailElements);
-            }             
-        }
-        public Position Head
-        {
-            get
-            {
-                return this.tailElements.Last();
-            }
-        }
+        public SnakeTail Tail { get; set; }
+
+        public SnakeHead SnakeHead { get; set; }
 
         public void Eat(Position position)
         {
@@ -53,17 +38,15 @@ namespace Snake_Game.SnakeBody
 
         public void Enqueue(Position position)
         {
-            this.tailElements.Enqueue(position);
-            Console.SetCursorPosition(position.Col, position.Row);
-            Console.Write("*");
+            this.Tail.TailElements.Enqueue(position);       
         }
 
         public Position Dequeue()
         {
-            var temp = this.tailElements.Dequeue();
+            var temp = this.Tail.TailElements.Dequeue();
             Console.SetCursorPosition(temp.Col, temp.Row);
             Console.Write(" ");
             return temp;
-        }       
+        }
     }
 }

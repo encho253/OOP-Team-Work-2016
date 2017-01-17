@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Snake_Game.Food
+﻿namespace Snake_Game.Food
 {
+    using System;
+
     public class SmallEgg : AbstractClasses.Food
     {
         public SmallEgg()

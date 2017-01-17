@@ -2,7 +2,7 @@
 {
     public class GameOverException : System.Exception
     {
-        public GameOverException(string msg): base(msg) { }
+        public GameOverException(string msg) : base(msg) { }
 
     }
 }

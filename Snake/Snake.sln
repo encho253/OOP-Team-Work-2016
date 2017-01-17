@@ -5,6 +5,14 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snake-Game", "Snake-Game\Snake-Game.csproj", "{2EEDBFA3-3CB7-44DE-8656-00548019CFB0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{495669D4-E12F-48B4-AA85-38954939CE6F}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Users\Encho\Desktop\ArrowsKeys.png = ..\..\..\Users\Encho\Desktop\ArrowsKeys.png
+		..\..\..\Users\Encho\Desktop\ClassDiagram1.png = ..\..\..\Users\Encho\Desktop\ClassDiagram1.png
+		..\..\..\Users\Encho\Desktop\ConsoleUI.png = ..\..\..\Users\Encho\Desktop\ConsoleUI.png
+		..\..\..\Users\Encho\Desktop\SnakeLogo.png = ..\..\..\Users\Encho\Desktop\SnakeLogo.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

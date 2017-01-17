@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Snake_Game.Timer
+﻿namespace Snake_Game.Timer
 {
-    using System.Threading;
-    using Food;
-    using Struct;
     using AbstractClasses;
-    class FoodTimer : Food
+    using System;
+
+    public class FoodTimer : Food
     {
         public static int NewFood(Food food, int lastTimeFood, int foodDissapearTime)
         {
+            food.Draw();
             if (Environment.TickCount - lastTimeFood >= foodDissapearTime)
             {
 
@@ -24,8 +18,18 @@ namespace Snake_Game.Timer
                 food.Draw();
                 lastTimeFood = Environment.TickCount;
             }
+
             return lastTimeFood;
         }
 
+        public static int DrawNewFood(Food food, int lastTimeFood)
+        {
+            Console.SetCursorPosition(food.Position.Col, food.Position.Row);
+            Console.Write(" ");
+            var egg = NewPosition();
+            food.Position = egg;
+            food.Draw();
+            return Environment.TickCount;
+        }
     }
 }

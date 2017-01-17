@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Snake_Game.AbstractClasses.Food" Collapsed="true">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAgAAAAAAAAAAAAAAAACAAAAAgAAAAAA=</HashCode>
+      <FileName>AbstractClasses\Food.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Snake_Game.AbstractClasses.GameObject" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAgAgAAAAAAQEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AbstractClasses\GameObjects.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Snake_Game.AbstractClasses.SnakeElement" Collapsed="true">
+    <Position X="2.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>AbstractClasses\SnakeElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Snake_Game.Engine.ConsoleGameEngine" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAgAAAAQEAEAAAAAAAAAISAAAAAAAAAI=</HashCode>
+      <FileName>Engine\ConsoleGameEngine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Snake_Game.Engine.FileScore" Collapsed="true">
+    <Position X="17.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Engine\FileScore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Snake_Game.Engine.Game" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAABAAAQAAAAgAEAAAMCAAMQAAAAAAAAAA=</HashCode>
+      <FileName>Engine\Game.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Snake_Game.Engine.Score" Collapsed="true">
+    <Position X="15.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Engine\Score.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Snake_Game.Exception.GameOverException" Collapsed="true">
+    <Position X="15.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exception\GameOverException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Snake_Game.Food.BigEgg" Collapsed="true">
+    <Position X="4.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Food\BigEgg.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Snake_Game.Food.Mouse" Collapsed="true">
+    <Position X="8.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Food\Mouse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Snake_Game.Food.MoveFood" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAgAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Food\MoveFood.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Snake_Game.Food.Rabbit" Collapsed="true">
+    <Position X="11" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Food\Rabbit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Snake_Game.Food.SmallEgg" Collapsed="true">
+    <Position X="2" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Food\SmallEgg.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Snake_Game.GameRender.GameRender" Collapsed="true">
+    <Position X="17.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameRender\GameRender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Snake_Game.Objects.Stone" Collapsed="true">
+    <Position X="13.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Stone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Snake_Game.Objects.StoneWall" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAggAAAAAAAAAQAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Objects\StoneWall.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Snake_Game.SnakeBody.Snake" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAEAAAAAAAAAAAAAAAAAAABAAAAAACAAgAAAA=</HashCode>
+      <FileName>SnakeBody\Snake.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Snake_Game.SnakeBody.SnakeHead" Collapsed="true">
+    <Position X="3.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SnakeBody\SnakeHead.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Snake_Game.SnakeElements.SnakeTail" Collapsed="true">
+    <Position X="1.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAQAAAAAAAAAEAAAAAAAAAACAAAAAIA=</HashCode>
+      <FileName>SnakeBody\SnakeTail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Snake_Game.Timer.FoodTimer" Collapsed="true">
+    <Position X="6.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAIAA=</HashCode>
+      <FileName>Timer\FoodTimer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Snake_Game.Struct.Position" Collapsed="true">
+    <Position X="15.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Struct\Position.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="Snake_Game.Contracts.IDrawing" Collapsed="true">
+    <Position X="15.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IDrawing.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Snake_Game.Contracts.IEating" Collapsed="true">
+    <Position X="17.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IEating.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Snake_Game.Contracts.IGame" Collapsed="true">
+    <Position X="19.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAABAAAAAAAAAAAAAAAAAAIQAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IGame.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Snake_Game.Contracts.IMovable" Collapsed="true">
+    <Position X="15.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IMovable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Snake_Game.Contracts.IRunnable" Collapsed="true">
+    <Position X="17.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Contracts\IRunnable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Snake_Game.Enum.Direction" Collapsed="true">
+    <Position X="15.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAgIAAAAAAAAAAAAAAAAAAAAAAAAACACAIAABAAI=</HashCode>
+      <FileName>Enum\Directions.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

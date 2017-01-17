@@ -1,14 +1,12 @@
-﻿using System.Threading;
-using Snake_Game.Contracts;
-using Snake_Game.Exception;
-using Snake_Game.Food;
-
-namespace Snake_Game.Engine
+﻿namespace Snake_Game.Engine
 {
     using Snake_Game.Enum;
     using Snake_Game.SnakeBody;
     using Snake_Game.Struct;
     using System;
+    using Snake_Game.Contracts;
+    using Snake_Game.Exception;
+    using Snake_Game.Food;
 
     public class Game : IGame
     {
@@ -31,6 +29,13 @@ namespace Snake_Game.Engine
         public Snake Snake { get; set; }
         public Mouse Mouse { get; set; }
         public Rabbit Rabbit { get; set; }
+
+        public event EventHandler eventPointsReached;
+
+        public virtual void StartEvent(EventArgs e)
+        {
+            eventPointsReached?.Invoke(this, e);
+        }
 
         public void MoveUp()
         {
@@ -56,7 +61,7 @@ namespace Snake_Game.Engine
         {
             this.Snake.Dequeue();
 
-            var head = this.Snake.Head;
+            var neck = this.Snake.Tail.Neck;
 
             if (Console.KeyAvailable)
             {
@@ -87,20 +92,22 @@ namespace Snake_Game.Engine
                 }
             }
 
-            var newPosition = new Position(head.Col + currentDirection.Col, head.Row + currentDirection.Row);
+            var newPosition = new Position(neck.Col + currentDirection.Col, neck.Row + currentDirection.Row);
 
-            if (newPosition.Col < 0) newPosition.Col = Console.WindowWidth - 1;
+            if (newPosition.Col < 0) newPosition.Col = Console.WindowWidth - 2;
             if (newPosition.Row < 0) newPosition.Row = Console.WindowHeight - 2;
             if (newPosition.Row >= Console.WindowHeight - 1) newPosition.Row = 0;
-            if (newPosition.Col >= Console.WindowWidth) newPosition.Col = 0;
+            if (newPosition.Col >= Console.WindowWidth - 1) newPosition.Col = 0;
 
             //game over
-            if (this.Snake.TailElements.Contains(newPosition))
+            if (this.Snake.Tail.TailElements.Contains(newPosition))
             {
-               throw new GameOverException("Your snake has bitten itself :(");
+                throw new GameOverException("Your snake has bitten itself :(");
             }
 
             this.Snake.Enqueue(newPosition);
+
+            this.Snake.SnakeHead.Head = newPosition;
         }
     }
 }

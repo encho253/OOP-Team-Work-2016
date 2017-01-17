@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Snake_Game.Food
+﻿namespace Snake_Game.Food
 {
-    public class BigEgg : AbstractClasses.Food
+    using System;
+    using AbstractClasses;
+
+    public class BigEgg : Food
     {
         public BigEgg()
         {
